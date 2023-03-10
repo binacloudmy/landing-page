@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bina | Privacy Policy</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Bina - Construction Project Management Software">
+  <meta name="keywords"
+    content="bootstrap, business, creative agency, mobile app showcase, saas, fintech, finance, online courses, software, medical, conference landing, services, e-commerce, shopping cart, multipurpose, shop, ui kit, marketing, seo, landing, blog, portfolio, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+  <link rel="shortcut icon" href="assets/favicon/logo.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor Styles -->
+  <link rel="stylesheet" media="screen" href="assets/css/theme.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap -->
+  <link rel="stylesheet" media="screen" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" media="screen" href="assets/css/theme.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- Page loading styles -->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #131022;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #9397ad;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      border: .15em solid #b4b7c9;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      border-color: rgba(255, 255, 255, .4);
+      border-right-color: transparent;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <!-- Theme mode -->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+  </script>
+
+  <!-- Page loading scripts -->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+  </script>
+</head>
+
+
+<!-- Body -->
+
+<body>
+
+  <!-- Page loading spinner -->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+
+
+  <!-- Page wrapper for sticky footer -->
+  <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+  <main class="page-wrapper">
+
+
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky">
+      <div class="container px-3">
+        <a href="index.html" class="navbar-brand pe-0">
+          <img src="assets/img/logo2.svg" width="125" alt="Bina" />
+        </a>
+        <div id="navbarNav" class="offcanvas offcanvas-end" data-bs-backdrop="false">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link" aria-current="page" data-scroll data-scroll-offset="50">Home</a>
+              <li class="nav-item">
+                <a href="about-us.html" class="nav-link" aria-current="page" data-scroll data-scroll-offset="50">About
+                  Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <a href="contacts.html" class="btn btn-primary w-100 d-block" id="btnSubmit" data-scroll
+            data-scroll-offset="50">
+            Schedule a demo
+          </a>
+        </div>
+        <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </header>
+
+
+    <!-- Breadcrumb -->
+    <nav class="container pt-4 mt-lg-3" aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+          <a href="index.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Privacy Policy</li>
+      </ol>
+    </nav>
+
+
+    <!-- Post title + Meta  -->
+    <section class="container mt-4 pt-lg-2 pb-3">
+      <h1 class="pb-3" style="max-width: 970px;">Bina Cloudtech's Privacy Policy</h1>
+      <div class="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-3">
+        <div class="d-flex align-items-center flex-wrap text-muted mb-md-0 mb-4">
+          <div class="fs-sm pe-3 me-3 mb-2">10th October 2022</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Post content + Sharing -->
+    <section class="container mb-5 pt-4 pb-2 py-mg-4">
+      <div class="row gy-4">
+
+        <p>At Bina Cloudtech, accessible from https://bina.cloud/, one of our main priorities is the privacy of our
+          visitors. This Privacy Policy document contains types of information that is collected and recorded by Bina
+          Cloudtech and how we use it.</p>
+
+        <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to
+          contact us.</p>
+
+        <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with
+          regards to the information that they shared and/or collect in Bina Cloudtech. This policy is not applicable to
+          any information collected offline or via channels other than this website.</a>.</p>
+
+        <h2>Consent</h2>
+
+        <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+
+        <h2>Information we collect</h2>
+
+        <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will
+          be made clear to you at the point we ask you to provide your personal information.</p>
+        <p>If you contact us directly, we may receive additional information about you such as your name, email address,
+          phone number, the contents of the message and/or attachments you may send us, and any other information you
+          may choose to provide.</p>
+        <p>When you register for an Account, we may ask for your contact information, including items such as name,
+          company name, address, email address, and telephone number.</p>
+
+        <h2>How we use your information</h2>
+
+        <p>We use the information we collect in various ways, including to:</p>
+
+        <ul>
+          <li>Provide, operate, and maintain our website</li>
+          <li>Improve, personalize, and expand our website</li>
+          <li>Understand and analyze how you use our website</li>
+          <li>Develop new products, services, features, and functionality</li>
+          <li>Communicate with you, either directly or through one of our partners, including for customer service, to
+            provide you with updates and other information relating to the website, and for marketing and promotional
+            purposes</li>
+          <li>Send you emails</li>
+          <li>Find and prevent fraud</li>
+        </ul>
+
+        <h2>Log Files</h2>
+
+        <p>Bina Cloudtech follows a standard procedure of using log files. These files log visitors when they visit
+          websites. All hosting companies do this and a part of hosting services' analytics. The information collected
+          by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and
+          time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information
+          that is personally identifiable. The purpose of the information is for analyzing trends, administering the
+          site, tracking users' movement on the website, and gathering demographic information.</p>
+
+        <h2>Cookies and Web Beacons</h2>
+
+        <p>Like any other website, Bina Cloudtech uses 'cookies'. These cookies are used to store information including
+          visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is
+          used to optimize the users' experience by customizing our web page content based on visitors' browser type
+          and/or other information.</p>
+
+        <h2>Google DoubleClick DART Cookie</h2>
+
+        <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads
+          to our site visitors based upon their visit to www.website.com and other sites on the internet. However,
+          visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy
+          Policy at the following URL – <a
+            href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>
+
+        <h2>Our Advertising Partners</h2>
+
+        <p>Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below.
+          Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier
+          access, we hyperlinked to their Privacy Policies below.</p>
+
+        <ul>
+          <li>
+            <p>Google</p>
+            <p><a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a>
+            </p>
+          </li>
+        </ul>
+
+        <h2>Advertising Partners Privacy Policies</h2>
+
+        <P>You may consult this list to find the Privacy Policy for each of the advertising partners of Bina Cloudtech.
+        </p>
+
+        <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are
+          used in their respective advertisements and links that appear on Bina Cloudtech, which are sent directly to
+          users' browser. They automatically receive your IP address when this occurs. These technologies are used to
+          measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that
+          you see on websites that you visit.</p>
+
+        <p>Note that Bina Cloudtech has no access to or control over these cookies that are used by third-party
+          advertisers.</p>
+
+        <h2>Third Party Privacy Policies</h2>
+
+        <p>Bina Cloudtech's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to
+          consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may
+          include their practices and instructions about how to opt-out of certain options. </p>
+
+        <p>You can choose to disable cookies through your individual browser options. To know more detailed information
+          about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
+
+        <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
+
+        <p>Under the CCPA, among other rights, California consumers have the right to:</p>
+        <p>Request that a business that collects a consumer's personal data disclose the categories and specific pieces
+          of personal data that a business has collected about consumers.</p>
+        <p>Request that a business delete any personal data about the consumer that a business has collected.</p>
+        <p>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</p>
+        <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these
+          rights, please contact us.</p>
+
+        <h2>GDPR Data Protection Rights</h2>
+
+        <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled
+          to the following:</p>
+        <p>The right to access – You have the right to request copies of your personal data. We may charge you a small
+          fee for this service.</p>
+        <p>The right to rectification – You have the right to request that we correct any information you believe is
+          inaccurate. You also have the right to request that we complete the information you believe is incomplete.</p>
+        <p>The right to erasure – You have the right to request that we erase your personal data, under certain
+          conditions.</p>
+        <p>The right to restrict processing – You have the right to request that we restrict the processing of your
+          personal data, under certain conditions.</p>
+        <p>The right to object to processing – You have the right to object to our processing of your personal data,
+          under certain conditions.</p>
+        <p>The right to data portability – You have the right to request that we transfer the data that we have
+          collected to another organization, or directly to you, under certain conditions.</p>
+        <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these
+          rights, please contact us.</p>
+
+        <h2>Children's Information</h2>
+
+        <p>Another part of our priority is adding protection for children while using the internet. We encourage parents
+          and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+
+        <p>Bina Cloudtech does not knowingly collect any Personal Identifiable Information from children under the age
+          of 13. If you think that your child provided this kind of information on our website, we strongly encourage
+          you to contact us immediately and we will do our best efforts to promptly remove such information from our
+          records.</p>
+
+    </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer pt-5 pb-4 pb-lg-5 bg-secondary">
+    <div class="container pt-lg-4">
+      <div class="row pb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+            <img src="assets/img/logo2.svg" width="125" alt="Bina" />
+          </div>
+          <dl class="row">
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">C-1, 2, Jalan Prima Saujana 2/A, Prima Saujana, 43000 Kajang, Selangor</dd>
+
+            <dt class="col-sm-3">Phone No.</dt>
+            <dd class="col-sm-9">03-8740 5922</dd>
+
+            <dt class="col-sm-3 text-truncate">Email</dt>
+            <dd class="col-sm-9">info@bina.cloud</dd>
+          </dl>
+        </div>
+        <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
+          <div id="footer-links" class="row">
+            <div class="col-lg-4">
+              <h6 class="mb-2">
+                <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                  data-bs-toggle="collapse">Useful Links</a>
+              </h6>
+              <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                <ul class="nav flex-column pb-lg-1 mb-lg-3">
+                  <li class="nav-item">
+                    <a href="#home" data-scroll data-scroll-offset="50"
+                      class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="privacy_policy.html" data-scroll data-scroll-offset="50"
+                      class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy Policy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="terms-and-conditions.html" data-scroll data-scroll-offset="50"
+                      class="nav-link d-inline-block px-0 pt-1 pb-2">Terms and Conditions</a>
+                  </li>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-3">
+            </div>
+            <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
+              <h6 class="mb-2">
+                <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                  data-bs-toggle="collapse">Socials</a>
+              </h6>
+              <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                <ul class="nav flex-column mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                      <img src="assets/img/icons/facebook.svg" width="30" alt="Facebook" />
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                      <img src="assets/img/icons/linkedin.svg" width="30" alt="LinkedIn" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
+        &copy; All rights reserved. Made by
+        <a class="nav-link d-inline-block p-0" rel="noopener">Bina.Cloud</a>
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Back to top button -->
+  <a href="#top" class="btn-scroll-top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+  </a>
+
+
+  <!-- Vendor Scripts -->
+  <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>
+  <script src="assets/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="assets/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="assets/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+  <script src="assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main Theme Script -->
+  <script src="assets/js/theme.min.js"></script>
+
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

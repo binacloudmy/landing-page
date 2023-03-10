@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>About Us | Bina Cloudtech</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-238400126-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-238400126-1');
+</script>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
+  <meta name="keywords"
+    content="bootstrap, business, creative agency, mobile app showcase, saas, fintech, finance, online courses, software, medical, conference landing, services, e-commerce, shopping cart, multipurpose, shop, ui kit, marketing, seo, landing, blog, portfolio, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+  <link rel="shortcut icon" href="assets/favicon/logo.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor Styles -->
+  <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css" />
+  <link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="assets/vendor/lightgallery/css/lightgallery-bundle.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap -->
+  <link rel="stylesheet" media="screen" href="assets/css/bootstrap.min.css" />
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"-->
+	<link rel="stylesheet" media="screen" href="assets/css/theme.min.css" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- Page loading styles -->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #131022;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #9397ad;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      border: .15em solid #b4b7c9;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      border-color: rgba(255, 255, 255, .4);
+      border-right-color: transparent;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <!-- Theme mode -->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+  </script>
+
+  <!-- Page loading scripts -->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+  </script>
+</head>
+
+
+<!-- Body -->
+
+<body>
+
+  <!-- Page loading spinner -->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+
+
+  <!-- Page wrapper for sticky footer -->
+  <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+  <main class="page-wrapper">
+
+
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <header class="header navbar navbar-expand-lg navbar-light position-absolute navbar-sticky">
+      <div class="container px-3">
+        <a href="index.html" class="navbar-brand pe-3 ">
+          <img src="assets/img/logo2.svg" width="125" alt="Silicon">
+        </a>
+        <div id="navbarNav" class="offcanvas offcanvas-end" data-bs-backdrop="false">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+            </ul>
+          </div>
+          <div class="offcanvas-footer border-top">
+            <!-- <a href="https://themes.getbootstrap.com/product/silicon-business-technology-template-ui-kit/"
+              class="btn btn-primary w-100" target="_blank" rel="noopener">
+              <i class="bx bx-cart fs-4 lh-1 me-1"></i>
+              &nbsp;Buy now
+            </a> -->
+          </div>
+        </div>
+        <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="contacts.html" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank"
+          rel="noopener">
+          &nbsp;Schedule A Demo
+        </a>
+      </div>
+    </header>
+
+
+    <!-- Hero -->
+    <section class="position-relative pt-5">
+
+      <!-- Background -->
+      <div class="position-absolute top-0 start-0 w-100 bg-position-bottom-center bg-size-cover bg-repeat-0"
+        style="background-image: url(assets/img/about/hero/Bina_bg.jpg);">
+        <div class="d-lg-none" style="height: 960px;"></div>
+        <div class="d-none d-lg-block" style="height: 768px;"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="container position-relative zindex-5 pt-5">
+        <div class="row">
+          <div class="col-lg-6">
+
+            <!-- Breadcrumb -->
+            <nav class="pt-md-2 pt-lg-3 pb-4 pb-md-5 mb-xl-4" aria-label="breadcrumb">
+              <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                  <a href="index.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+              </ol>
+            </nav>
+
+            <!-- Text -->
+            <h1 class="pb-2 pb-md-3">About BINA</h1>
+            <p class="fs-xl pb-4 mb-1 mb-md-2 mb-lg-3 text-justify" style="max-width: 600px;">BINA is a Cloud based Construction
+              Project Management Software develop proudly by Malaysian incorporated company Bina Cloudtech Sdn Bhd. We
+              offer comprehensive solution to the industry player & are on a mission to become the platform needed for
+              construction industry to hope on to the digital transformation journey & stay competitive in the current
+              technological revolution.</p>
+            <!-- <img src="assets/img/about/clutch-dark.png" class=" d-dark-mode-none" width="175" alt="Clutch">
+            <img src="assets/img/about/clutch-light.png" class="d-none d-dark-mode-block" width="175" alt="Clutch"> -->
+            <!-- <div class="row row-cols-3 pt-4 pt-md-5 mt-2 mt-xl-4">
+              <div class="col">
+                <h3 class="h2 mb-2">2,480</h3>
+                <p class="mb-0"><strong>Remote</strong> Sales Experts</p>
+              </div>
+              <div class="col">
+                <h3 class="h2 mb-2">760</h3>
+                <p class="mb-0"><strong>New Clients</strong> per Month</p>
+              </div>
+              <div class="col">
+                <h3 class="h2 mb-2">1,200</h3>
+                <p class="mb-0"><strong>Requests</strong> per Week</p>
+              </div>
+            </div> -->
+          </div>
+
+          <!-- Images -->
+          <div class="col-lg-6 mt-xl-3 pt-5 pt-lg-4">
+            <div class="row row-cols-2 gx-3 gx-lg-4">
+              <div class="col pt-lg-5 mt-lg-1">
+                <img src="assets/img/about/hero/Bina_01.jpg" class="d-block rounded-3 mb-3 mb-lg-4" alt="Image">
+                <img src="assets/img/about/hero/Bina_02.jpg" class="d-block rounded-3" alt="Image">
+              </div>
+              <div class="col">
+                <img src="assets/img/about/hero/Bina_03.jpg" class="d-block rounded-3 mb-3 mb-lg-4" alt="Image">
+                <img src="assets/img/about/hero/Bina_04.jpg" class="d-block rounded-3" alt="Image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Benefits (features) -->
+    <section class="container mt-3 mb-5 pt-lg-5" id="benefits">
+      <div class="swiper pt-5 mt-xl-5" data-swiper-options='{
+          "slidesPerView": 1,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "500": {
+              "slidesPerView": 2
+            },
+            "991": {
+              "slidesPerView": 3
+            }
+          }
+        }'>
+        <div class="swiper-wrapper pt-4">
+
+          <!-- Item -->
+          <div class="swiper-slide border-end-lg px-2">
+            <div class="text-center">
+              <img src="assets/img/landing/digital-agency/icons/idea.svg" width="48" alt="Bulb icon"
+                class="d-block mb-4 mx-auto">
+              <h4 class="mb-2 pb-1">Efficient</h4>
+              <p class="mx-auto" style="max-width: 336px;">Our cutting-edge technolgy provides the best features for construction
+              </p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="swiper-slide border-end-lg px-2">
+            <div class="text-center">
+              <img src="assets/img/landing/digital-agency/icons/award.svg" width="48" alt="Award icon"
+                class="d-block mb-4 mx-auto">
+              <h4 class="mb-2 pb-1">Pioneers</h4>
+              <p class="mx-auto" style="max-width: 336px;">First digital construction company located in Malaysia</p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="swiper-slide px-2">
+            <div class="text-center">
+              <img src="assets/img/landing/digital-agency/icons/team.svg" width="48" alt="Team icon"
+                class="d-block mb-4 mx-auto">
+              <h4 class="mb-2 pb-1">Team of Professionals</h4>
+              <p class="mx-auto" style="max-width: 336px;">We have a team of developers ready to assist in your daily task
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination (bullets) -->
+        <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+      </div>
+    </section>
+
+
+    <!-- Video showreel -->
+    <!-- <section class="container text-center pb-5 mt-n2 mt-md-0 mb-md-2 mb-lg-4">
+      <div class="position-relative rounded-3 overflow-hidden">
+        <div
+          class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
+          <a href="https://www.youtube.com/watch?v=zPo5ZaH6sW8"
+            class="btn btn-video btn-icon btn-xl stretched-link bg-white" data-bs-toggle="video">
+            <i class="bx bx-play"></i>
+          </a>
+        </div>
+        <span class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-35"></span>
+        <img src="assets/img/landing/digital-agency/cover.jpg" class="d-block w-100" alt="Cover image">
+      </div>
+    </section> -->
+
+
+    <!-- Awards -->
+    <!-- <section class="container mb-5 pb-3 pb-md-4 pb-lg-5">
+      <div class="row gy-4 py-xl-2">
+        <div class="col-md-4">
+          <h2 class="mb-0 text-md-start text-center">Award-winning designs featured by</h2>
+        </div>
+        <div class="col-lg-7 offset-lg-1 col-md-8">
+          <div class="row row-cols-sm-4 row-cols-2 gy-4">
+            <div class="col">
+              <div class="position-relative text-center">
+                <img src="assets/img/landing/digital-agency/awards/webby.svg" width="100" alt="Webby"
+                  class="d-block mx-auto mb-3">
+                <a href="#" class="text-body justify-content-center fs-sm stretched-link text-decoration-none">4x mobile
+                  of the day</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="position-relative text-center">
+                <img src="assets/img/landing/digital-agency/awards/cssda.svg" width="100" alt="CSSDA"
+                  class="d-block mx-auto mb-3">
+                <a href="#" class="text-body justify-content-center fs-sm stretched-link text-decoration-none">1x
+                  Kudos</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="position-relative text-center">
+                <img src="assets/img/landing/digital-agency/awards/awwwards.svg" width="100" alt="Awwwards"
+                  class="d-block mx-auto mb-3">
+                <a href="#" class="text-body justify-content-center fs-sm stretched-link text-decoration-none">3x
+                  website of the day</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="position-relative text-center">
+                <img src="assets/img/landing/digital-agency/awards/fwa.svg" width="100" alt="FWA"
+                  class="d-block mx-auto mb-3">
+                <a href="#" class="text-body justify-content-center fs-sm stretched-link text-decoration-none">2x best
+                  website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Team -->
+    <!-- <section class="container py-5 my-md-3 my-lg-5">
+      <h2 class="h1 text-center pt-1 pb-3 mb-3 mb-lg-4">Our Leadership</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"> -->
+
+        <!-- Item -->
+        
+
+
+    <!-- Contact CTA -->
+    <section class="container mt-n2">
+      <div class="card border-0 bg-gradient-primary">
+        <div class="card-body p-md-5 p-4 bg-size-cover"
+          style="background-image: url(assets/img/landing/digital-agency/contact-bg.png);">
+          <div class="py-md-5 py-4 text-center">
+            <h3 class="h4 fw-normal text-light opacity-75">Want to work with us? Let’s talk</h3>
+            <a href="mailto:info@bina.cloud" class="display-6 text-light">info@bina.cloud</a>
+            <div class="pt-md-5 pt-4 pb-md-2">
+              <a href="contacts.html" class="btn btn-lg btn-light">Contact us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Social networks (Carousel on narrow screens) -->
+    
+  </main>
+
+
+  <!-- Footer -->
+	<footer class="footer pt-5 pb-4 pb-lg-5">
+		<div class="container pt-lg-4">
+			<div class="row pb-5">
+				<div class="col-lg-4 col-md-6">
+					<div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+						<img src="assets/img/logo2.svg" width="125" alt="Bina" />
+					</div>
+					<dl class="row">
+						<dt class="col-sm-3">Address</dt>
+						<dd class="col-sm-9">C-1, 2, Jalan Prima Saujana 2/A, Prima Saujana, 43000 Kajang, Selangor</dd>
+
+						<dt class="col-sm-3">Phone No.</dt>
+						<dd class="col-sm-9">03-8740 5922</dd>
+
+						<dt class="col-sm-3 text-truncate">Email</dt>
+						<dd class="col-sm-9">info@bina.cloud</dd>
+					</dl>
+				</div>
+				<div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
+					<div id="footer-links" class="row">
+						<div class="col-lg-4">
+							<h6 class="mb-2">
+								<a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+									data-bs-toggle="collapse">Useful Links</a>
+							</h6>
+							<div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+								<ul class="nav flex-column pb-lg-1 mb-lg-3">
+									<li class="nav-item">
+										<a href="index.html" data-scroll data-scroll-offset="50"
+											class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a>
+									</li>	
+									<li class="nav-item">
+										<a href="privacy_policy.html" data-scroll data-scroll-offset="50"
+											class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy Policy</a>
+									</li>
+									<li class="nav-item">
+										<a href="terms-and-conditions.html" data-scroll data-scroll-offset="50"
+											class="nav-link d-inline-block px-0 pt-1 pb-2">Terms and Conditions</a>
+									</li>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-3">
+						</div>
+						<div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
+							<h6 class="mb-2">
+								<a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+									data-bs-toggle="collapse">Socials</a>
+							</h6>
+							<div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+								<ul class="nav flex-column mb-2 mb-lg-0">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
+				&copy; All rights reserved. Made by
+				<a class="nav-link d-inline-block p-0" rel="noopener">Bina.Cloud</a>
+			</p>
+		</div>
+	</footer>
+
+  <!-- Back to top button -->
+  <a href="#top" class="btn-scroll-top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+  </a>
+
+
+  <!-- Vendor Scripts -->
+  <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+
+  <!-- Main Theme Script -->
+  <script src="assets/js/theme.min.js"></script>
+
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

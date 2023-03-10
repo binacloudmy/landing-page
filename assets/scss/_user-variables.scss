@@ -1,0 +1,43 @@
+// Import Bootstrap functions to use inside variables values
+@import '../vendor/bootstrap/scss/functions';
+//== Colors
+//
+// Gray and brand colors to use across the Theme.
+// Grayscale
+$white: #fff !default;
+$gray-100: #f3f6ff !default;
+$gray-200: #eff2fc !default;
+$gray-300: #e2e5f1 !default;
+$gray-400: #d4d7e5 !default;
+$gray-500: #b4b7c9 !default;
+$gray-600: #9397ad !default;
+$gray-700: #585c7b !default;
+$gray-800: #3e4265 !default;
+$gray-900: #131022 !default;
+$black: #000 !default;
+// Brand colors
+$primary: #3366a9 !default;
+$secondary: #d7dcdf !default;
+$info: #4c82f7 !default;
+$success: #22c55e !default;
+$warning: #ffba08 !default;
+$danger: #ef4444 !default;
+$light: $white !default;
+$dark: $gray-900 !default;
+$azure: #3366a9;
+$iron: #d7dcdf;
+$haiti: #131436;
+$bunting: #161949;
+$danube: #6ba9d5;
+$rhino: #2c385c;
+$oslo-gray: #7e8691;
+$havelock-blue: #519ad4;
+$venus: #9c949c;
+// Adding new color to default Bootstrap's $theme-colors map
+$theme-colors: ( 'primary': $primary, 'secondary': $secondary, 'success': $success, 'info': $info, 'warning': $warning, 'danger': $danger, 'light': $light, 'dark': $dark) !default;
+// #pricing:hover{
+//     background: url(/assets/img/landing-index/contact-background.jpg);
+//     .card{
+//         display: none;
+//     }
+// }

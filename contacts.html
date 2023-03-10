@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>BINA | Contacts</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-238400126-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-238400126-1');
+</script>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
+  <meta name="keywords"
+    content="bootstrap, business, creative agency, mobile app showcase, saas, fintech, finance, online courses, software, medical, conference landing, services, e-commerce, shopping cart, multipurpose, shop, ui kit, marketing, seo, landing, blog, portfolio, html5, css3, javascript, gallery, slider, touch, creative">
+  <meta name="author" content="Createx Studio">
+
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+  <link rel="shortcut icon" href="assets/favicon/logo.svg">
+  <meta name="msapplication-TileColor" content="#080032">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor Styles -->
+  <link rel="stylesheet" media="screen" href="assets/css/theme.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" media="screen" href="assets/css/theme.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- Page loading styles -->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #131022;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #9397ad;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      border: .15em solid #b4b7c9;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      border-color: rgba(255, 255, 255, .4);
+      border-right-color: transparent;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <!-- Theme mode -->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== undefined && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+  </script>
+
+  <!-- Page loading scripts -->
+  <script>
+    (function () {
+      window.onload = function () {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+  </script>
+</head>
+
+
+<!-- Body -->
+
+<body>
+
+  <!-- Page loading spinner -->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+
+
+  <!-- Page wrapper for sticky footer -->
+  <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+  <main class="page-wrapper bg-silver-30">
+    <div class="col-12 bg-silver-30">
+      <!-- Navbar -->
+      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+      <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky">
+        <div class="container px-3">
+          <a href="index.html" class="navbar-brand pe-3">
+            <img src="assets/img/logo2.svg" width="125" alt="Silicon">
+
+          </a>
+          <div id="navbarNav" class="offcanvas offcanvas-end" data-bs-backdrop="false">
+            <div class="offcanvas-header border-bottom">
+              <h5 class="offcanvas-title">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="about-us.html" class="nav-link" aria-current="page" data-scroll
+                    data-scroll-offset="50">About Us</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- <a href="contacts-v2.html" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank"
+          rel="noopener">
+          <i class=""></i>
+          &nbsp;Contact Sales
+        </a> -->
+        </div>
+      </header>
+
+
+      <!-- Page content -->
+      <section class="position-relative jarallax pb-xl-3" data-jarallax data-speed="0.4">
+        <div class="jarallax-img bg-contact"></div>
+        <div class="card bg-transparent border-0 overflow-hidden py-2 px-2">
+          <div class="card-body position-relative zindex-5">
+            <p class="display-6 text-center text-white pb-1 mb-1 fw-bold">Contact Us</p>
+            <p class="fs-lg text-center text-white">We'd love to hear from you <br>Please fill out the contact form
+              below
+              and we’ll get back to you
+              shortly.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="container">
+        <!-- Breadcrumb -->
+        <nav class="pt-4 mt-lg-3" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+              <a href="index.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Contacts Sales</li>
+          </ol>
+        </nav>
+
+        <div class="row pb-5 mb-md-2 mb-lg-4 mb-xl-0">
+
+          <!-- Contact details -->
+          <div class="col-xl-3 col-md-0 mb-4 mb-md-0">
+            <div class="h3 pt-lg-5 mt-lg-0 pt-2 text-center">Other ways to connect</div>
+            <div class="card-light card-hover mb-0">
+              <div class="card-body d-flex align-items-start">
+                <i class="bx bx-envelope fs-3 bg-secondary text-primary d-inline-block rounded-circle p-3"></i>
+                <div class="ps-4">
+                  <h3 class="h5 pb-1 mb-2 pt-2">Email us</h3>
+                  <a href="mailto:info@bina.cloud" class="btn btn-link stretched-link fs-base px-0">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-light card-hover mb-0 my-n4i">
+              <div class="card-body d-flex align-items-start">
+                <i class="bx bx-phone-call fs-3 bg-secondary text-primary d-inline-block rounded-circle p-3"></i>
+                <div class="ps-4">
+                  <h3 class="h5 pb-1 mb-2 pt-2">Schedule A Call</h3>
+                  <!-- Calendly link widget begin -->
+                  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"
+                    async></script>
+                  <a href="" class="btn btn-link stretched-link fs-base px-0"
+                    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/binacloud/contact-sales'});return false;"></a>
+                  <!-- Calendly link widget end -->
+                  <!-- <a href="tel:4065550120" class="btn btn-link stretched-link fs-base px-0">(406) 555-0120</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="card-light card-hover my-n4i">
+              <div class="card-body1 d-flex align-items-start">
+                <i class="bx bx-support fs-3 bg-secondary text-primary d-inline-block rounded-circle p-3"></i>
+                <div class="ps-4">
+                  <h3 class="h5 pb-1 mb-2 pt-2">Tech Support</h3>
+                  <a href="mailto:info@bina.cloud" class="btn btn-link stretched-link fs-base px-0">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Forms -->
+          <div class="col-md-8 offset-xl-1">
+            <div class="h1 pt-4 mt-lg-3 pb-3 text-center col-lg">Schedule a demo</div>
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+                region: "na1",
+                portalId: "22729558",
+                formId: "990ba7d7-5963-4f5f-bcf6-66d52e25b5bf",
+                version: "V2_PRERELEASE"
+              });
+            </script>
+          </div>
+        </div>
+    </div>
+
+    <!-- Companies Desktop -->
+    <div class="containerDesktop row bg-companies text-center">
+      <h5 class="text-center pt-4">
+        <img class="mx-5" src="assets/img/meranti.png" width="125" alt="Bina" />
+        <img class="mx-3" src="assets/img/Cloud_Alpha.png" width="200" alt="Bina" />
+        <img class="mx-5" src="assets/img/unifi-logo-biz.png" width="200" alt="Bina" />
+        <img class="mx-5" src="assets/img/ST_SB.png" width="110" alt="Bina" />
+        <img class="mx-5" src="assets/img/Magic.png" width="125" alt="Bina" />
+      </h5>
+    </div>
+
+    <!-- Companies Mobile-->
+    <div id="myCarousel" class="carousel slide containerMobile bg-companies" data-bs-ride="carousel">
+      <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+          <img src="assets/img/meranti.png" class="d-block w-35 pt-3" alt="...">
+          <img src="assets/img/Cloud_Alpha.png" class="d-block w-35 pt-3" alt="...">
+        </div>
+        </div>
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+          <img src="assets/img/Magic.png" class="d-block w-35" alt="...">
+          <img src="assets/img/unifi-logo-biz.png" class="d-block w-50 h-25 pt-3" alt="...">
+        </div>
+        </div>
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+          <img src="assets/img/ST_SB.png" class="d-block w-30 h-50" alt="...">
+        </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer pt-3 pb-4 pb-lg-5 bg-companies">
+      <div class="container pt-lg-4">
+        <div class="row pb-5">
+          <div class="col-lg-4 col-md-6">
+            <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+              <img src="assets/img/logo2.svg" width="125" alt="Bina" />
+            </div>
+            <dl class="row">
+              <dt class="col-sm-3">Address</dt>
+              <dd class="col-sm-9">C-1, 2, Jalan Prima Saujana 2/A, Prima Saujana, 43000 Kajang, Selangor</dd>
+
+              <dt class="col-sm-3">Phone No.</dt>
+              <dd class="col-sm-9">03-8740 5922</dd>
+
+              <dt class="col-sm-3 text-truncate">Email</dt>
+              <dd class="col-sm-9">info@bina.cloud</dd>
+            </dl>
+          </div>
+          <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
+            <div id="footer-links" class="row">
+              <div class="col-lg-4">
+                <h6 class="mb-2">
+                  <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                    data-bs-toggle="collapse">Useful Links</a>
+                </h6>
+                <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                  <ul class="nav flex-column pb-lg-1 mb-lg-3">
+                    <li class="nav-item">
+                      <a href="privacy_policy.html" data-scroll data-scroll-offset="50"
+                        class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="terms-and-conditions.html" data-scroll data-scroll-offset="50"
+                        class="nav-link d-inline-block px-0 pt-1 pb-2">Terms and Conditions</a>
+                    </li>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-3">
+              </div>
+              <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
+                <h6 class="mb-2">
+                  <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                    data-bs-toggle="collapse">Socials</a>
+                </h6>
+                <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                  <ul class="nav flex-column mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                        <img src="assets/img/icons/facebook.svg" width="30" alt="Facebook" />
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                        <img src="assets/img/icons/youtube.svg" width="30" alt="Youtube" />
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                        <img src="assets/img/icons/linkedin.svg" width="30" alt="LinkedIn" />
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2 mb-3 px-2">
+                        <img src="assets/img/icons/instagram.svg" width="30" alt="Instagram" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
+          &copy; All rights reserved. Made by
+          <a class="nav-link d-inline-block p-0" rel="noopener">Bina.Cloud</a>
+        </p>
+      </div>
+    </footer>
+
+
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
+
+
+    <!-- Vendor Scripts -->
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <!-- Main Theme Script -->
+    <script src="assets/js/theme.min.js"></script>
+    </div>
+  </main>
+
+  	<!-- Boostrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+</body>
+
+</html>
