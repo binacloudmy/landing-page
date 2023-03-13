@@ -14956,8 +14956,8 @@ hr.dropdown-divider {
 }
 
 .nav-link.active:not([data-bs-toggle=dropdown]) {
-  pointer-events: none;
-  cursor: default;
+  /*pointer-events: none;
+  cursor: default;*/
 }
 
 .nav-tabs {
