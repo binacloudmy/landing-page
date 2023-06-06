@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      function redirectToApp() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskId = urlParams.get("taskId");
+        // Define your app URI
+        var appURI = `task/1/${task.id}`;
+
+        // Define the app store URLs for Android and iOS
+        var playStoreURL =
+          "https://play.google.com/store/apps/details?id=cloud.bina.android";
+        var appStoreURL = "https://apps.apple.com/us/app/bina/id6444920215";
+
+        // Check if the app is installed
+        function checkAppInstalled() {
+          // Attempt to open the app URI
+          window.location.href = appURI;
+
+          // Redirect to the app store if the app URI fails to open
+          setTimeout(function () {
+            redirectToStore();
+          }, 5000); // Wait for 2 seconds before redirecting to the store
+        }
+
+        // Redirect to the app store
+        function redirectToStore() {
+          var userAgent =
+            navigator.userAgent || navigator.vendor || window.opera;
+
+          // Check if the device is running on Android
+          if (/android/i.test(userAgent)) {
+            window.location.href = playStoreURL;
+          }
+          // Check if the device is running on iOS
+          else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.href = appStoreURL;
+          }
+          // Redirect to a fallback page if the device is not Android or iOS
+          else {
+            window.location.href = "index.html";
+          }
+        }
+
+        checkAppInstalled();
+      }
+    </script>
+  </head>
+  <body onload="redirectToApp()">
+    <h1>Redirecting...</h1>
+    <p>If you have the app installed, you will be redirected to the app.</p>
+    <p>If you don't have the app, you will be redirected to the app store.</p>
+  </body>
+</html>
