@@ -5,6 +5,8 @@
 	<meta charset="utf-8" />
 	<title>Home | Bina Cloudtech</title>
 
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-238400126-1"></script>
 	<script>
@@ -219,7 +221,7 @@
 
 	<!-- Page wrapper for sticky footer -->
 	<!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
-	<main class="page-wrapper">
+	<main class="page-wrapper overflow-hidden">
 		<!-- Navbar -->
 		<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
 		<header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky">
@@ -289,17 +291,25 @@
 								<p class="display-5 text-bina pb-3 mb-3 fw-bold">Construction Project Management
 									Software
 								</p>
-								<p class="fs-xl text-bina fw-bold"><i class='bx me-2 bx-check'></i> Deliver
-									High-Standard and Quality Project on time
+								<p class="fs-xl text-bina fw-bold"><i class='bx me-2 bx-check'></i> Stay in charge of
+									your construction projects,
+									reduce risk & maximise profits
 								</p>
-								<p class="fs-xl text-bina fw-bold"><i class='bx me-2 bx-check'></i> Enhance project
-									collaboration
-								</p>
-								<p class="fs-xl text-bina fw-bold"><i class='bx me-2 bx-check'></i> Reduce operational
-									costs
-								</p>
-								<p class="fs-xl text-bina fw-bold"><i class='bx me-2 bx-check'></i> Improve the schedule
-								</p>
+								<ul class="nav nav-tabs flex-nowrap justify-content-lg-center overflow-auto pb-2 mb-3 mb-lg-4"
+									role="tablist">
+									<li class="nav-item" role="presentation">
+										<a href="contacts.html" class="btn btn-primary w-40 d-block" id="btnSubmit"
+											data-scroll data-scroll-offset="50">
+											Schedule a demo
+										</a>
+									</li>
+									<li class="nav-item" role="presentation">
+										<a href="" class="btn btn-primary w-40 d-block" id="btnSubmit" data-scroll
+											data-scroll-offset="50">
+											Watch video
+										</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -350,12 +360,106 @@
 			</button>
 		</div>
 
-		<!-- Computer Images-->
-		<section id="services" class="position-relative py-5">
-			<h2 class="h2 mb-lg-3 text-center">Efficient, Effortless, Effective.</h2>
-			<div class="d-flex justify-content-center">
-				<img src="assets/img/devices.png" width="1000">
-			</div>
+		<!-- Stakes -->
+		<section id="services" class="bg-secondary pb-md-2 pb-lg-5 py-5">
+			<div class="d-none d-lg-block" style="margin-top: -60px; padding-top: 60px;"></div>
+			<div class="container ">
+				<div class="row justify-content-center text-center pb-3 mb-sm-2 mb-lg-3">
+					<div class="col-xl-6 col-lg-7 col-md-9">
+						<h2 class="h1 mb-lg-4">Managing a construction company is tough</h2>
+					</div>
+					<div class="row row-cols-1 row-cols-md-2 justify-content-center">
+						<!-- Item -->
+						<div class="col py-4 my-2 my-sm-3">
+							<div
+								class="card card-hover h-90 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 me-xl-2">
+								<div class="card-body pt-3">
+									<div
+										class="d-inline-block bg-primary shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-2">
+										<img src="assets/img/landing-index/features/chart.svg" class="d-block m-1"
+											width="40" alt="Icon">
+									</div>
+									<p class="mb-0 d-inline-flex align-items-center">
+										How many hours and dollars have been lost due to employee inefficiency?
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item -->
+						<div class="col py-4 my-2 my-sm-3">
+							<div
+								class="card card-hover h-90 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2">
+								<div class="card-body pt-3">
+									<div
+										class="d-inline-block bg-primary shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-2">
+										<img src="assets/img/landing-index/features/data.svg" class="d-block m-1"
+											width="40" alt="Icon">
+									</div>
+									<p class="mb-0 d-inline-flex align-items-center">
+										How many costly reworks and errors has your company experienced due to
+										inaccurate project
+										data?
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item -->
+						<div class="col py-4 my-2 my-sm-3">
+							<div
+								class="card card-hover h-90 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2">
+								<div class="card-body pt-3">
+									<div
+										class="d-inline-block bg-primary shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-2">
+										<img src="assets/img/landing-index/features/dollar.svg" class="d-block m-1"
+											width="40" alt="Icon">
+									</div>
+									<p class="mb-0 d-inline-flex align-items-center">
+										How much money have you lost due to unnecessary project costs?
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item -->
+						<div class="col py-4 my-2 my-sm-3">
+							<div
+								class="card card-hover h-90 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2">
+								<div class="card-body pt-3">
+									<div
+										class="d-inline-block bg-primary shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-2">
+										<img src="assets/img/services/icons/analytics.svg" class="d-block m-1"
+											width="40" alt="Icon">
+									</div>
+									<p class="mb-0 d-inline-flex align-items-center">
+										How much project progress has been slowed due to non transparent staff
+										reporting?
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item -->
+						<div class="col py-4 my-2 my-sm-3">
+							<div
+								class="card card-hover h-90 border-0 shadow-sm text-decoration-none pt-5 px-sm-3 px-md-0 px-lg-3 pb-sm-3 pb-md-0 pb-lg-3 ms-xl-2">
+								<div class="card-body pt-3">
+									<div
+										class="d-inline-block bg-primary shadow-primary rounded-3 position-absolute top-0 translate-middle-y p-2">
+										<img src="assets/img/landing-index/features/time.svg" class="d-block m-1"
+											width="40" alt="Icon">
+									</div>
+									<p class="mb-0 d-inline-flex align-items-center">
+										How many projects have you seen delayed and deadlines missed because of
+										non-performing
+										contractors?
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 		</section>
 
 		<!-- Services-->
@@ -371,14 +475,13 @@
 					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/notifications.svg " width="40 "
-									alt="Notifications" />
+								<img src="assets/img/landing-index/features/test.svg" width="40 " alt="Notifications" />
 							</div>
 							<div class="card-body text-center">
 								<h3 class="h5 pb-1 mb-2">Real-Time Collaborations</h3>
 								<p class="mb-0">
-									Received notification whenever new important document or drawing is uploaded to the
-									cloud.
+									Bina Cloud enables teams to work together in real-time, with updates and changes
+									being visible to everyone instantly.
 								</p>
 							</div>
 						</div>
@@ -389,13 +492,14 @@
 					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/security.svg " width="40 "
+								<img src="assets/img/landing-index/features/checklist.svg" width="40 "
 									alt="Security " />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">Data Security</h3>
+								<h3 class="h5 pb-1 mb-2">Efficient document management</h3>
 								<p class="mb-0">
-									Your project data is <b>protected</b> according to the law.
+									Bina Cloud allows you to manage all your project documents in one place, making it
+									easy to find what you need quickly.
 								</p>
 							</div>
 						</div>
@@ -407,13 +511,13 @@
 					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/analytics.svg " width="40 "
-									alt="Analytics " />
+								<img src="assets/img/landing-index/features/chat.svg" width="40 " alt="Analytics " />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">Project Transparency</h3>
+								<h3 class="h5 pb-1 mb-2">Streamlined communication</h3>
 								<p class="mb-0">
-									Monitor <b>Real-Time</b> project progress with a single dashboard & analytics
+									Bina Cloud provides a platform for effective communication between teams, reducing
+									errors and misunderstandings.
 								</p>
 							</div>
 						</div>
@@ -425,12 +529,13 @@
 					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/support.svg " alt="Support 24/7 " />
+								<img src="assets/img/landing-index/features/clock.svg " alt="Support 24/7 " />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">Support 24/7</h3>
+								<h3 class="h5 pb-1 mb-2">Faster issue resolution</h3>
 								<p class="mb-0">
-									We'll be there to guide your transformation anytime.
+									Bina Cloud helps teams identify and resolve issues quickly, reducing delays and
+									costs.
 								</p>
 							</div>
 						</div>
@@ -440,15 +545,17 @@
 				</div>
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-0 pb-xl-3">
 					<!-- Item -->
-					<div class="col-xl-4 position-relative">
+					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/tasks.svg " alt="Efficiency " />
+								<img src="assets/img/landing-index/features/static.svg " width="40 "
+									alt="Notifications" />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">Enhance Work Efficiency</h3>
+								<h3 class="h5 pb-1 mb-2">Improved project visibility</h3>
 								<p class="mb-0">
-									Streamline document <b>request, review & approval</b> workflow in one platform
+									Bina Cloud gives teams a clear view of project progress, enabling better
+									decision-making and resource allocation.
 								</p>
 							</div>
 						</div>
@@ -456,36 +563,58 @@
 						<hr class="position-absolute top-100 start-0 w-100 d-none d-sm-block" />
 					</div>
 					<!-- Item -->
-					<div class="col-xl-4 position-relative">
+					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/statistics.svg " alt="Boost Profits " />
+								<img src="assets/img/landing-index/features/mobile.svg " width="40 " alt="Security " />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">Boost Profits</h3>
+								<h3 class="h5 pb-1 mb-2">Mobile accessibility</h3>
 								<p class="mb-0">
-									Reduce <b>Operation cost</b> & Deliver <b>high quality</b> project on time
+									Bina Cloud can be accessed from anywhere using mobile devices, allowing teams to
+									stay connected and productive on the go.
 								</p>
 							</div>
 						</div>
-						<hr class="position-absolute top-0 end-0 w-1 h-100 d-none d-sm-block" />
+						<hr class="position-absolute top-0 end-0 w-1 h-100 d-none d-md-block" />
 						<hr class="position-absolute top-100 start-0 w-100 d-none d-sm-block" />
 					</div>
 
 					<!-- Item -->
-					<div class="col-xl-4 position-relative">
+					<div class="col position-relative">
 						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
 							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
-								<img src="assets/img/landing-index/features/cloud.svg " width="40 "
-									alt="Accesibility " />
+								<img src="assets/img/landing-index/features/tools.svg " width="40 " alt="Analytics " />
 							</div>
 							<div class="card-body text-center">
-								<h3 class="h5 pb-1 mb-2">High Accesibility</h3>
+								<h3 class="h5 pb-1 mb-2">Streamlined construction workflows</h3>
 								<p class="mb-0">
-									Access all document in a <b>Common Data Environment</b>
+									BinaCloud offers a comprehensive suite of tools designed to streamline request
+									approvals workflows and reduce project cycle times, helping teams to complete daily
+									task faster.
+
 								</p>
 							</div>
 						</div>
+						<hr class="position-absolute top-0 end-0 w-1 h-100 d-none d-sm-block d-md-none" />
+						<hr class="position-absolute top-100 start-0 w-100 d-none d-sm-block" />
+					</div>
+
+					<!-- Item -->
+					<div class="col position-relative">
+						<div class="card border-0 bg-transparent rounded-0 p-md-1 p-xl-3">
+							<div class="d-table bg-secondary rounded-3 p-3 mx-auto mt-3 mt-md-4">
+								<img src="assets/img/landing-index/features/analytics.svg " alt="Support 24/7 " />
+							</div>
+							<div class="card-body text-center">
+								<h3 class="h5 pb-1 mb-2">Robust analytics</h3>
+								<p class="mb-0">
+									Bina Cloud provides powerful analytics tools to help teams track and analyze project
+									data, allowing them to make data-driven decisions.
+								</p>
+							</div>
+						</div>
+						<hr class="position-absolute top-0 start-0 w-1 h-100 d-none d-md-block" />
 						<hr class="position-absolute top-100 start-0 w-100 d-none d-sm-block" />
 					</div>
 				</div>
@@ -494,7 +623,7 @@
 				style="background-color: rgba(255, 255, 255, 0.05)">
 			</div>
 		</section>
-
+		
 		<!-- Features  -->
 		<section id="features" class="container pt-5 pb-2 mt-0 mt-sm-4 mt-xl-4">
 			<h2 class="h1 text-center pb-3 pb-lg-4">Features</h2>
@@ -641,122 +770,534 @@
 		</section>
 
 		<!-- Testimonials -->
-		<section id="testimonials" class="bg-secondary bg-bina py-5 pb-2 mt-0 mt-sm-4 mt-xl-4">
-			<div class="container py-2 py-md-3 py-lg-4 py-xl-5 bg-bina">
-				<div class="row row-cols-1 row-cols-md-2 gx-3 gx-lg-4">
-					<div class="col-lg-3 col-md-4">
-						<h2 class="h1 text-center text-md-start mx-auto mx-md-0 pt-md-2 text-white"
-							style="max-width: 300px">
-							What
-							<br class="d-none d-md-inline" />People Say
-							<br class="d-none d-md-inline" />About
-							<span>Bina</span>:
-						</h2>
-					</div>
-					<div class="col-lg-9 col-md-8">
-						<div class="card border-0 shadow-sm p-4 p-xxl-5">
-							<div class="d-flex justify-content-between pb-4 mb-2">
-								<span class="btn btn-icon btn-primary btn-lg shadow-primary pe-none">
-									<i class="bx bxs-quote-left"></i>
-								</span>
-								<div class="d-flex">
-									<button type="button" id="testimonials-prev"
-										class="btn btn-prev btn-icon btn-sm me-2">
-										<i class="bx bx-chevron-left"></i>
-									</button>
-									<button type="button" id="testimonials-next"
-										class="btn btn-next btn-icon btn-sm ms-2">
-										<i class="bx bx-chevron-right"></i>
-									</button>
+		<section id="testimonials" class="container py-5 mb-2 mt-md-2 mb-md-4 mt-lg-4 mb-lg-5">
+			<div class="row pt-xl-1 pb-xl-3">
+				<div class="col-lg-3 col-md-4">
+					<h2 class="text-center text-md-start mx-auto mx-md-0 pt-md-2" style="max-width: 300px;">What <br
+						class="d-none d-md-inline">People Say <br class="d-none d-md-inline">About Bina:
+					</h2>
+				</div>
+				<div class="col-lg-9 col-md-8">
+					<div class="swiper mx-n2" data-swiper-options='{
+						"slidesPerView": 1,
+						"pagination": {
+							"el": ".swiper-pagination",
+							"clickable": true
+						},
+						"breakpoints": {
+							"500": {
+								"slidesPerView": 2
+							},
+							"1000": {
+								"slidesPerView": 2
+							},
+							"1200": {
+								"slidesPerView": 3
+							}
+						}
+					}'>
+					<div class="swiper-wrapper">
+						<!-- Item -->
+						<div class="swiper-slide h-auto pt-4">
+							<figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+								<div class="card h-100 position-relative border-0 shadow-sm pt-4">
+									<span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+										<i class="bx bxs-quote-left"></i>
+									</span>
+									<blockquote class="card-body pb-3 mb-0">
+										<p class="mb-0">Before BinaCloud, manual procedures caused confusion and
+										    delays. Since deploying BinaCloud,
+											our team has collaborated more efficiently and effectively, resulting in
+											faster project completion and more client satisfaction.</p>
+									</blockquote>
+									<div class="card-footer border-0 text-nowrap pt-0">
+										<i class="bx bxs-star text-warning"></i>
+										<i class="bx bxs-star text-warning"></i>
+										<i class="bx bxs-star text-warning"></i>
+										<i class="bx bxs-star text-warning"></i>
+										<i class="bx bx-star text-muted opacity-75"></i>
+									</div>
 								</div>
+								<figcaption class="d-flex align-items-center ps-4 pt-4">
+									<img src="assets/img/avatar/03.jpg" width="48" class="rounded-circle"
+									alt="Fannie Summers">
+									<div class="ps-3">
+										<h6 class="fs-sm fw-semibold mb-0">Akram</h6>
+										<!--<span class="fs-xs text-muted">Medical Center patient</span>-->
+									</div>
+								</figcaption>
+							</figure>
+						</div>
+
+							<!-- Item -->
+							<div class="swiper-slide h-auto pt-4">
+								<figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+									<div class="card h-100 position-relative border-0 shadow-sm pt-4">
+										<span
+											class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+											<i class="bx bxs-quote-left"></i>
+										</span>
+										<blockquote class="card-body pb-3 mb-0">
+											<p class="mb-0">Since implementing Bina Cloud, we've seen a significant
+												improvement in our team's collaboration and project management.
+												The real-time progress tracking and streamlined submittals have helped
+												us stay on schedule and avoid costly mistakes.</p>
+										</blockquote>
+										<div class="card-footer border-0 text-nowrap pt-0">
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+										</div>
+									</div>
+									<figcaption class="d-flex align-items-center ps-4 pt-4">
+										<img src="assets/img/avatar/02.jpg" width="48" class="rounded-circle"
+											alt="Robert Fox">
+										<div class="ps-3">
+											<h6 class="fs-sm fw-semibold mb-0">Nadzru</h6>
+											<!--<span class="fs-xs text-muted">Medical Center patient</span>-->
+										</div>
+									</figcaption>
+								</figure>
 							</div>
 
-							<!-- Slider -->
-							<div class="swiper mx-0 mb-md-n2 mb-xxl-n3" data-swiper-options='{
-                            "spaceBetween": 24,
-                            "loop": true,
-                            "pagination": {
-                                "el": ".swiper-pagination",
-                                "clickable": true
-                            },
-                            "navigation": {
-                                "prevEl": "#testimonials-prev",
-                                "nextEl": "#testimonials-next"
-                            }
-                            }'>
-								<div class="swiper-wrapper">
-									<!-- Item -->
-									<div class="swiper-slide h-auto">
-										<figure class="card h-100 position-relative border-0 bg-transparent">
-											<blockquote class="card-body p-0 mb-0">
-												<p class="fs-lg mb-0">
-													Bina offers a solution that we all have been looking for, an
-													integration between our current
-													practice with a future ready digital environment workflow.
-												</p>
-											</blockquote>
-											<figcaption
-												class="card-footer border-0 d-flex align-items-center w-100 pb-2">
-												<div class="ps-3">
-													<h6 class="fw-semibold lh-base mb-0">Nadzru</h6>
-													<span class="fs-sm text-muted">Managing Director at Merititan Sdn
-														Bhd</span>
-												</div>
-											</figcaption>
-										</figure>
+							<!-- Item -->
+							<div class="swiper-slide h-auto pt-4">
+								<figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+									<div class="card h-100 position-relative border-0 shadow-sm pt-4">
+										<span
+											class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+											<i class="bx bxs-quote-left"></i>
+										</span>
+										<blockquote class="card-body pb-3 mb-0">
+											<p class="mb-0">At first, we were hesitant to invest in BinaCloud due to its
+												high cost but The cost savings we've
+												experienced since using BinaCloud have more than made up for the initial
+												investment. We're now able to complete projects faster and with higher
+												quality, making BinaCloud worth every penny.</p>
+										</blockquote>
+										<div class="card-footer border-0 text-nowrap pt-0">
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bxs-star text-warning"></i>
+											<i class="bx bx-star text-muted opacity-75"></i>
+										</div>
 									</div>
+									<figcaption class="d-flex align-items-center ps-4 pt-4">
+										<img src="assets/img/avatar/06.jpg" width="48" class="rounded-circle"
+											alt="Annette Black">
+										<div class="ps-3">
+											<h6 class="fs-sm fw-semibold mb-0">Uncle Mat</h6>
+											<!--<span class="fs-xs text-muted">Medical Center patient</span>-->
+										</div>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+						<!-- Pagination (bullets) -->
+						<div class="swiper-pagination position-relative pt-2 mt-4"></div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+		
+		<!-- Companies Desktop -->
+		<div class="containerDesktop row bg-companies text-center pt-3">
+			<h5 class="text-center">
+				<img class="mx-2" src="assets/img/meranti.png" width="125" alt="Bina" />
+				<img class="mx-2" src="assets/img/Cloud_Alpha.png" width="200" alt="Bina" />
+				<img class="mx-2" src="assets/img/unifi-logo-biz.png" width="200" alt="Bina" />
+				<img class="mx-2" src="assets/img/ST_SB.png" width="110" alt="Bina" />
+				<img class="mx-2" src="assets/img/Magic.png" width="125" alt="Bina" />
+				<img class="mx-2" src="assets/img/Magic.png" width="125" alt="Bina" />
+				<img class="mx-2" src="assets/img/Magic.png" width="125" alt="Bina" />
+			</h5>
+		</div>
 
-									<!-- Item -->
-									<div class="swiper-slide h-auto">
-										<figure class="card h-100 position-relative border-0 bg-transparent">
-											<blockquote class="card-body p-0 mb-0">
-												<p class="fs-lg mb-0">
-													As a guy whom on daily basis have to write on paper to ensure the
-													quality of the workflow,
-													with BINA higher efficiency is definitely achieved by its digital
-													forms tools .
-												</p>
-											</blockquote>
-											<figcaption
-												class="card-footer border-0 d-flex align-items-center w-100 pb-2">
-												<!-- <img src="assets/img/avatar/13.jpg" width="60 " class="rounded-circle"
-													alt="Khairuddin" /> -->
-												<div class="ps-3">
-													<h6 class="fw-semibold lh-base mb-0">Khairuddin</h6>
-													<span class="fs-sm text-muted">QAQC Engineer at - Senghoti
-														Technologies.
-													</span>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
+		<!-- Companies Mobile-->
+		<div id="myCarousel" class="carousel slide containerMobile" data-bs-ride="carousel">
+			<div class="carousel-inner text-center">
+				<div class="carousel-item active">
+					<div class="d-flex justify-content-center">
+						<img src="assets/img/meranti.png" class="d-block w-35 pt-3" alt="...">
+						<img src="assets/img/Cloud_Alpha.png" class="d-block w-35 pt-3" alt="...">
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-flex justify-content-center">
+						<img src="assets/img/Magic.png" class="d-block w-35" alt="...">
+						<img src="assets/img/unifi-logo-biz.png" class="d-block w-50 h-25 pt-3" alt="...">
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-flex justify-content-center">
+						<img src="assets/img/ST_SB.png" class="d-block w-30 h-50" alt="...">
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+			<!-- Pagination (bullets) -->
+			<div class="swiper-pagination position-relative pt-2 mt-4"></div>
+		</div>
+		
+		<!-- Statistics -->
+		<section class="container mb-5 pt-md-4 bg-secondary rounded-3 py-4">
+			<div class="container pt-3 pb-2 mt-0 mt-sm-4 mt-xl-4">
+				<h2 class="h1 text-center pb-2 pb-lg-4">Statistics</h2>
+			</div>
+			<div class="swiper mx-n2 " data-swiper-options='{
+						"slidesPerView": 1,
+						"spaceBetween": 8,
+						"pagination": {
+							"el": ".swiper-pagination",
+							"clickable": true
+						},
+						"breakpoints": {
+							"500": {
+								"slidesPerView": 2
+							},
+							"1000": {
+								"slidesPerView": 3
+							}
+						}
+					}'>
+				<div class="swiper-wrapper justify-content-lg-center">
+					<!-- Item -->
+					<div class="swiper-slide h-auto pb-3">
+						<article class="card border-0 shadow-sm h-99 mx-1">
+							<div>
+								<canvas id="myChart"></canvas>
+							</div>
+							<script>
+								const ctx = document.getElementById('myChart');
+								new Chart(ctx, {
+									type: 'line',
+									data: {
+										labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+										datasets: [{
+											label: '# of Votes',
+											data: [12, 19, 3, 5, 2, 3],
+											borderWidth: 1
+										}]
+									},
+									options: {
+										scales: {
+											y: {
+												beginAtZero: true
+											}
+										}
+									}
+								});
+							</script>
+						</article>
+					</div>
+		
+					<!-- Item -->
+					<div class="swiper-slide h-auto pb-3">
+						<article class="card border-0 shadow-sm h-99 mx-1">
+							<div>
+								<canvas id="myChartt"></canvas>
+							</div>
+							<script>
+								const ctxx = document.getElementById('myChartt');
+								new Chart(ctxx, {
+									type: 'line',
+									data: {
+										labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+										datasets: [{
+											label: '# of Votes',
+											data: [12, 19, 3, 5, 2, 3],
+											borderWidth: 1
+										}]
+									},
+									options: {
+										scales: {
+											y: {
+												beginAtZero: true
+											}
+										}
+									}
+								});
+							</script>
+						</article>
+					</div>
+				</div>
+		
+				<!-- Pagination (bullets) -->
+				<div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+			</div>
+		</section>
 
-									<!-- Item -->
-									<div class="swiper-slide h-auto">
-										<figure class="card h-100 position-relative border-0 bg-transparent">
-											<blockquote class="card-body p-0 mb-0">
-												<p class="fs-lg mb-0">
-													Bina offers a comprehensive tools that covers end to end on the
-													project operation i believe
-													Bina will the new standard of construction management.
-												</p>
-											</blockquote>
-											<figcaption
-												class="card-footer border-0 d-flex align-items-center w-100 pb-2">
-												<!-- <img src="assets/img/avatar/11.jpg " width="60" class="rounded-circle"
-													alt="Anuar" /> -->
-												<div class="ps-3">
-													<h6 class="fw-semibold lh-base mb-0">Anuar</h6>
-													<span class="fs-sm text-muted">Project Manager at Senghoti
-														Technologies</span>
-												</div>
-											</figcaption>
-										</figure>
-									</div>
+		<div>
+			<canvas id="myChart1"></canvas>
+		</div>
+		<script>
+		const chart1 = document.getElementById('myChart1');
+		new Chart(chart1, {
+			type: 'line',
+			data: {
+				labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+				datasets: [{
+					label: '# of Votes',
+					data: [12, 19, 3, 5, 2, 3],
+					borderWidth: 1,
+					pointRadius: 0.2,
+					tension: 0.4,
+					borderColor: "rgba(51, 102, 169, 1)",
+					fill: {
+						target: 'origin',
+						above: 'rgba(51, 102, 169, 0.1)',   // Area will be red above the origin
+						below: 'rgba(51, 102, 169, 0.1)'    // And blue below the origin
+              } 
+			  
+				}]
+			  },
+			  options: {
+				scales: {
+				  y: {
+					beginAtZero: true
+				  }
+				}
+			  }
+			});
+		  </script>
+		
+		<!-- The Plan -->
+        <section class="container">
+		<div class="text-center pb-4 pb-md-0 mb-2 mb-md-5 mx-auto" style="max-width: 530px;">
+			<h2 class="h1">Get started in 3 easy steps.</h2>
+		</div>
+		
+		<!-- Steps -->
+		<div class="steps steps-sm steps-horizontal-md steps-center pb-5 mb-md-2 mb-lg-3">
+			<div class="step">
+				<div class="step-number">
+					<div class="step-number-inner">1</div>
+				</div>
+				<div class="step-body">
+					<h3 class="h4 mb-3">Schedule a demo </h3>
+					<p class="mb-0">Get a personalized demo of the platform and its features
+					</p>
+				</div>
+			</div>
+			<div class="step">
+				<div class="step-number">
+					<div class="step-number-inner">2</div>
+				</div>
+				<div class="step-body">
+					<h3 class="h4 mb-3">Create a plan</h3>
+					<p class="mb-0">Together we create specific plan to accomplish your goals</p>
+				</div>
+			</div>
+			<div class="step">
+				<div class="step-number">
+					<div class="step-number-inner">3</div>
+				</div>
+				<div class="step-body">
+					<h3 class="h4 mb-3">Get results</h3>
+					<p class="mb-0">Take charge & deliver high quality projects on schedule</p>
+				</div>
+			</div>
+		</div>
+	    </section>
+		
+		<!-- The Explanatory Paragraph -->
+		<section class="container mb-5 pt-5 pb-lg-5">
+			<!-- Blog articles -->
+			<div class="pb-3">
+				<!-- Blog item -->
+				<article class="card border-0 shadow-sm overflow-hidden mb-4">
+					<div class="row g-0">
+						<div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
+						style="background-image: url(assets/img/about/hero/Bina_01.jpg); min-height: 15rem;">
+					    </div>
+						<div class="col-sm-8">
+							<div class="card-body">
+								<p>At Bina Cloudtech Sdn Bhd, we know you are the kind of contractors who want to be efficient
+								and successful in your construction projects.
+								In order to be that way, you need a reliable and advanced construction management solution.
+								The problem is the lack of streamlined processes and outdated tools, which make your
+								projects more challenging and time-consuming.</p>
+								<div id="Explanatory_Paragraph" class="collapse d-lg-block" data-bs-parent="#footer-links">
+									<p>We believe it's simply unfair that anybody should have to deal with these limitations. We
+									understand the frustrations and obstacles you face in your daily work. That's why we
+									have developed Bina Cloud,
+									our comprehensive construction management software.
+									<br><br>
+									Here’s how it works:
+									Let's schedule a demo where we can showcase the features of Bina Cloud, understand your
+									specific requirements, and create a suitable plan tailored to your needs.</p>
+									<p>So, take action today and schedule a demo with us. By adopting Bina Cloud, you can put an
+									end to the frustrations and inefficiencies that hold you back.
+									Don't let projects become more complicated and stressful than they need to be. Embrace
+									Bina Cloud and experience a transformation in your project management capabilities,
+									leading to improved profitability and client satisfaction.</p>
+									<p>Contact us now to schedule a demo and see how Bina Cloud can revolutionize your
+									construction projects.
+									Together, let's enhance your productivity, efficiency, and success.</p>
 								</div>
-
-								<!-- Pagination (bullets) -->
-								<div class="swiper-pagination position-relative mt-5"></div>
+								<a href="#Explanatory_Paragraph" class="dropdown-toggle d-lg-none py-2"
+								data-bs-toggle="collapse"></a>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+		
+		<!-- Video -->
+		<section class="container mb-5 pt-3 pb-lg-5">
+			<div class="row">
+				<div class="col-xl-3">
+					<div class="d-xl-block d-flex align-items-center justify-content-between mb-xl-0 mb-4 pb-xl-0 pb-3">
+						<h2 class="h1 mb-xl-4 mb-0 pb-xl-3">Video</h2>
+					</div>
+				</div>
+		
+				<!-- Carousel -->
+				<div class="col-xl-9">
+					<div class="swiper" data-swiper-options='{
+								"slidesPerView": 1,
+								"spaceBetween": 24,
+								"pagination": {
+								"el": ".swiper-pagination",
+								"clickable": true
+							},
+							"breakpoints": {
+								"500": {
+									"slidesPerView": 2
+								},
+								"1000": {
+									"slidesPerView": 3
+								},
+								"1200": {
+									"slidesPerView": 3
+								}
+							}}'>
+						<div class="swiper-wrapper">
+							<!-- Item -->
+							<article class="swiper-slide h-auto pb-3">
+								<div class="d-block position-relative rounded-3 mb-3">
+									<div
+										class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
+										<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0"
+											class="btn btn-video btn-icon btn-xl stretched-link bg-white"
+											data-bs-toggle="video">
+											<i class="bx bx-play"></i>
+										</a>
+									</div>
+									<span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
+									<img src="assets/img/blog/podcasts/04.jpg" class="rounded-3" alt="Image">
+								</div>
+								<h3 class="h5">
+									<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0">IOS and the Changing landscape
+										of Data Privacy</a>
+								</h3>
+							</article>
+		
+							<!-- Item -->
+							<article class="swiper-slide h-auto pb-3">
+								<div class="d-block position-relative rounded-3 mb-3">
+									<div
+										class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
+										<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0"
+											class="btn btn-video btn-icon btn-xl stretched-link bg-white"
+											data-bs-toggle="video">
+											<i class="bx bx-play"></i>
+										</a>
+									</div>
+									<span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
+									<img src="assets/img/blog/podcasts/04.jpg" class="rounded-3" alt="Image">
+								</div>
+								<h3 class="h5">
+									<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0">IOS and the Changing landscape of Data
+										Privacy</a>
+								</h3>
+							</article>
+		
+							<!-- Item -->
+							<article class="swiper-slide h-auto pb-3">
+								<div class="d-block position-relative rounded-3 mb-3">
+									<div
+										class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
+										<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0"
+											class="btn btn-video btn-icon btn-xl stretched-link bg-white"
+											data-bs-toggle="video">
+											<i class="bx bx-play"></i>
+										</a>
+									</div>
+									<span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
+									<img src="assets/img/blog/podcasts/04.jpg" class="rounded-3" alt="Image">
+								</div>
+								<h3 class="h5">
+									<a href="https://www.youtube.com/watch?v=wJC1LFT_GD0">IOS and the Changing landscape
+										of Data Privacy</a>
+								</h3>
+							</article>
+						</div>
+		
+						<!-- Pagination (bullets) -->
+						<div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Package Choice -->
+		<section class="container position-relative zindex-2">
+			<div class="price-switch-wrapper">
+				<div class="table-responsive-lg">
+					<div class="d-flex align-items-center pb-4">
+						<!-- Pricing plan -->
+						<div class="border rounded-3 rounded-end-0 shadow-sm me-n1" style="width: 32%; min-width: 16rem;">
+							<div class="card bg-light h-100 border-0 border-end rounded-end-0 py-3 py-sm-4 py-lg-5">
+								<div class="card-body text-center">
+									<h3 class="mb-4">Document management Module</h3>
+									<div class="display-5 text-dark mb-1" data-monthly-price>$15</div>
+									<div class="text-muted mb-5">per month</div>
+								</div>
+								<div class="card-footer border-0 text-center pt-0 pb-4">
+									<a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>
+								</div>
+							</div>
+						</div>
+		
+						<!-- Featurd pricing plan -->
+						<div class="bg-primary position-relative rounded-3 shadow-primary shadow-dark-mode-none zindex-2 p-4"
+							style="width: 36%; min-width: 18rem;">
+							<div class="card bg-transparent border-light py-3 py-sm-4 py-lg-5">
+								<div class="card-body text-light text-center">
+									<h3 class="text-light mb-4">Project Management Module</h3>
+									<div class="display-5 mb-1" data-monthly-price>$25</div>
+									<div class="opacity-50 mb-5">per month</div>
+								</div>
+								<div class="card-footer border-0 text-center pt-0 pb-4">
+									<a href="#" class="btn btn-light btn-lg shadow-secondary">Get started now</a>
+								</div>
+							</div>
+						</div>
+		
+						<!-- Pricing plan -->
+						<div class="border rounded-3 rounded-start-0 shadow-sm" style="width: 32%; min-width: 16rem;">
+							<div class="card bg-light h-100 border-0 rounded-start-0 py-3 py-sm-4 py-lg-5">
+								<div class="card-body text-center">
+									<h3 class="mb-4">Project Management Module + BIM Integration</h3>
+									<div class="display-5 text-dark mb-1" data-monthly-price>$50</div>
+									<div class="text-muted mb-5">per month</div>
+								</div>
+								<div class="card-footer border-0 text-center pt-0 pb-4">
+									<a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -873,83 +1414,84 @@
 	</main>
 
 	<!-- Footer -->
-	<footer class="footer pt-5 pb-4 pb-lg-5">
+    <footer class="footer pt-5 pb-4 pb-lg-5 mt-2 mt-md-0">
 		<div class="container pt-lg-4">
-			<div class="row pb-5">
-				<div class="col-lg-7 col-md-6">
-					<div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
-						<img src="assets/img/logo2.svg" width="125" alt="Bina" />
-					</div>
-					<dl class="row">
-						<dt class="col-sm-3">Company Name :</dt>
-						<dd class="col-sm-9">Bina Cloudtech Sdn Bhd</dd>
-
-						<dt class="col-sm-3">Address :</dt>
-						<dd class="col-sm-9">C-1, 2, Jalan Prima Saujana 2/A, Prima Saujana, 43000 Kajang, Selangor</dd>
-
-						<dt class="col-sm-3">Phone No. :</dt>
-						<dd class="col-sm-9">03-8740 5922</dd>
-
-						<dt class="col-sm-3 text-truncate">Email :</dt>
-						<dd class="col-sm-9">info@bina.cloud</dd>
-					</dl>
+		  <div class="row pb-3">
+			<div class="col-lg-3 ">
+			  <div style="max-width: 26rem;">
+				<div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+					<img src="assets/img/logo2.svg" width="125" alt="Bina" />
 				</div>
-				<!-- <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0"> -->
-					<!-- <div id="footer-links" class="row"> -->
-						<div class="col-lg-4">
-							<h6 class="mb-2">
-								<a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
-									data-bs-toggle="collapse">Useful Links</a>
-							</h6>
-							<div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
-								<ul class="nav flex-column pb-lg-1 mb-lg-3">
-									<li class="nav-item">
-										<a href="#home" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a>
-									</li>
-									<li class="nav-item">
-										<a href="#services" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Services</a>
-									</li>
-									<li class="nav-item">
-										<a href="#features" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Features</a>
-									</li>
-									<li class="nav-item">
-										<a href="#testimonials" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Testimonials</a>
-									</li>
-									<li class="nav-item">
-										<a href="privacy_policy.html" target="_blank" rel="noopener noreferrer" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy Policy</a>
-									</li>
-									<li class="nav-item">
-										<a href="terms-and-conditions.html" target="_blank" rel="noopener noreferrer" data-scroll data-scroll-offset="50"
-											class="nav-link d-inline-block px-0 pt-1 pb-2">Terms and Conditions</a>
-									</li>
-							</div>
-						</div>
-						
-						<!-- <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
-							<h6 class="mb-2">
-								<a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
-									data-bs-toggle="collapse">Socials</a>
-							</h6>
-							<div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
-								<ul class="nav flex-column mb-2 mb-lg-0">
-									
-								</ul>
-							</div>
-						</div> -->
-					<!-- </div> -->
-				<!-- </div> -->
+			  </div>
+			  <ul class="nav flex-column mb-0">
+				<li >
+					<p class=" align-items-start fw-normal px-0 py-1">
+						<i class="bx bx-map fs-5 text-primary me-2"></i>
+						C-1, 2, Jalan Prima Saujana 2/A, <br> Prima Saujana, 43000 Kajang, Selangor
+					</p>
+				</li>
+				<li >
+					<p class=" align-items-start fw-normal px-0 py-1">
+						<i class="bx bx-phone-call fs-5 text-primary me-2"></i>
+						03-8740 5922
+					</p>
+				</li>
+				<li>
+					<p class=" align-items-start fw-normal px-0 py-1">
+						<i class="bx bx-envelope fs-5 text-primary me-2"></i>
+						info@bina.cloud
+					</p>
+				</li>
+			</ul>
 			</div>
-			<p class="fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
-				&copy; All rights reserved. Made by
-				<a class="nav-link d-inline-block p-0" rel="noopener">Bina.Cloud</a>
-			</p>
+			<div class="col-lg-7 offset-lg-1">
+			  <div id="footer-links" class="row">
+				<div class="col-lg-4">
+				  <h6 class="mb-2">
+					<a href="#Info" class="d-block text-dark dropdown-toggle d-lg-none py-2" data-bs-toggle="collapse">Info</a>
+				  </h6>
+				  <div id="Info" class="collapse d-lg-block" data-bs-parent="#footer-links">
+					<ul class="nav flex-column pb-lg-1 mb-lg-3">
+					  <li class="nav-item"><a href="#home" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a></li>
+					  <li class="nav-item"><a href="#services" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2">Services</a></li>
+					  <li class="nav-item"><a href="#features" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2">Features</a></li>
+					  <li class="nav-item"><a href="#testimonials" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2">Testimonials</a></li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col-xl-4 col-lg-3">
+				  <h6 class="mb-2">
+					<a href="#Company" class="d-block text-dark dropdown-toggle d-lg-none py-2" data-bs-toggle="collapse">Company</a>
+				  </h6>
+				  <div id="Company" class="collapse d-lg-block" data-bs-parent="#footer-links">
+					<ul class="nav flex-column mb-2 mb-lg-0">
+					  <li class="nav-item"><a href="#testimonials" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2">About Us</a></li>
+					  <li class="nav-item"><a href="privacy_policy.html" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank" rel="noopener noreferrer">Privacy
+						Policy</a></li>
+					  <li class="nav-item"><a href="terms-and-conditions.html" data-scroll data-scroll-offset="50" class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank" rel="noopener noreferrer">Terms and Conditions</a></li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col-xl-3 col-lg-5 pt-2 pt-lg-0">
+					<h5 class="mb-2">Follow Us</h5>
+					<a href="https://www.facebook.com/Bina.Cloud/"
+						class="btn btn-icon btn-secondary btn-facebook rounded-circle ">
+						<i class="bx bxl-facebook"></i>
+					</a>
+					<a href="https://www.linkedin.com/company/bina-cloudtech-sdn-bhd/"
+						class="btn btn-icon btn-secondary btn-instagram rounded-circle  ms-3">
+						<i class="bx bxl-linkedin"></i>
+					</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
+			&copy; All rights reserved. Made by 
+			<a class="nav-link d-inline-block p-0" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a>
+		  </p>
 		</div>
-	</footer>
+	  </footer>
 
 	<!-- Back to top button -->
 	<a href="#top" class="btn-scroll-top" data-scroll>
