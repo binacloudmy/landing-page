@@ -1,0 +1,199 @@
+<section id="video" class="container text-center mt-2 mt-md-4 mt-lg-5">
+    <h2 class="h1 pt-2 pt-lg-0">Video</h2>
+    <p class="fs-lg pb-2 pb-md-3 pb-lg-0 mb-4 mb-lg-5">
+      Explore our curated compilation of user feedback videos.
+    </p>
+
+    <!-- Desktop -->
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 containerDesktop"
+      style="justify-content: center"
+    >
+      <div
+        class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+      >
+        <img
+          src="assets/img/landing/intro/landings/saas-v2.jpg"
+          class="b-block border rounded-3 shadow-sm"
+          alt="SaaS v.2"
+        />
+        <h3 class="h5 mt-4 mb-3 mb-lg-0">
+          <a
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#videoModal"
+            class="stretched-link"
+            onclick="openModal('5lI0wafhCAY')"
+            >Example Video 1</a
+          >
+        </h3>
+      </div>
+      <div
+        class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+      >
+        <img
+          src="assets/img/landing/intro/landings/saas-v2.jpg"
+          class="b-block border rounded-3 shadow-sm"
+          alt="SaaS v.2"
+        />
+        <h3 class="h5 mt-4 mb-3 mb-lg-0">
+          <a
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#videoModal"
+            class="stretched-link"
+            onclick="openModal('BH8oGiGBFd4')"
+            >Example Video 2</a
+          >
+        </h3>
+      </div>
+      <!-- <div
+        class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+      >
+        <img
+          src="assets/img/landing/intro/landings/saas-v2.jpg"
+          class="b-block border rounded-3 shadow-sm"
+          alt="SaaS v.2"
+        />
+        <h3 class="h5 mt-4 mb-3 mb-lg-0">
+          <a
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#videoModal"
+            class="stretched-link"
+            onclick="openModal('uT53EUHgQrQ')"
+            >Example Video 3</a
+          >
+        </h3>
+      </div> -->
+    </div>
+
+    <!-- Mobile -->
+    <div
+      id="videoCarousel"
+      class="carousel slide containerMobile"
+      data-bs-ride="carousel"
+    >
+
+      <!-- Slides -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+        <div class="carousel-item active">
+          <div
+            class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+          >
+            <img
+              src="assets/img/landing/intro/landings/saas-v2.jpg"
+              class="b-block border rounded-3 shadow-sm"
+              alt="SaaS v.2"
+            />
+            <h3 class="h5 mt-4 mb-3 mb-lg-0">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#videoModal"
+                class="stretched-link"
+                onclick="openModal('5lI0wafhCAY')"
+                >Example Video 1</a
+              >
+            </h3>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div
+            class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+          >
+            <img
+              src="assets/img/landing/intro/landings/saas-v2.jpg"
+              class="b-block border rounded-3 shadow-sm"
+              alt="SaaS v.2"
+            />
+            <h3 class="h5 mt-4 mb-3 mb-lg-0">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#videoModal"
+                class="stretched-link"
+                onclick="openModal('BH8oGiGBFd4')"
+                >Example Video 2</a
+              >
+            </h3>
+          </div>
+        </div>
+        <!-- <div class="carousel-item">
+          <div
+            class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
+          >
+            <img
+              src="assets/img/landing/intro/landings/saas-v2.jpg"
+              class="b-block border rounded-3 shadow-sm"
+              alt="SaaS v.2"
+            />
+            <h3 class="h5 mt-4 mb-3 mb-lg-0">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#videoModal"
+                class="stretched-link"
+                onclick="openModal('uT53EUHgQrQ')"
+                >Example Video 3</a
+              >
+            </h3>
+          </div> -->
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <!-- <a
+        class="carousel-control-prev"
+        href="#videoCarousel"
+        role="button"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#videoCarousel"
+        role="button"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a> -->
+
+    <!-- Modal For Video -->
+    <div
+      class="modal fade"
+      id="videoModal"
+      tabindex="-1"
+      aria-labelledby="videoModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="videoModalLabel"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div id="videoModal" class="modal-body">
+            <div id="player"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
