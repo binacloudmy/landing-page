@@ -188,74 +188,6 @@
         }
       }
     </style>
-
-    <!-- Theme mode -->
-    <script>
-      let mode = window.localStorage.getItem("mode"),
-        root = document.getElementsByTagName("html")[0];
-      if (mode !== undefined && mode === "dark") {
-        root.classList.add("dark-mode");
-      } else {
-        root.classList.remove("dark-mode");
-      }
-    </script>
-
-    <!-- Page loading scripts -->
-    <script>
-      (function () {
-        window.onload = function () {
-          const preloader = document.querySelector(".page-loading");
-          preloader.classList.remove("active");
-          setTimeout(function () {
-            preloader.remove();
-          }, 1000);
-        };
-      })();
-    </script>
-
-    <!-- Modal on Poster script -->
-    <script type="text/javascript">
-      $(window).on("load", function () {
-        $("#myModal").modal("show");
-      });
-    </script>
-
-    <!-- Meta Pixel Code -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js"
-      );
-      fbq("init", "587349362931697");
-      fbq("track", "PageView");
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=587349362931697&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
   </head>
 
   <!-- Body -->
@@ -509,7 +441,12 @@
             width="200"
             alt="Bina"
           />
-          <img class="mx-5" src="assets/img/JKR_Muar.jpeg" width="110" alt="Bina" />
+          <img
+            class="mx-5"
+            src="assets/img/JKR_Muar.jpeg"
+            width="110"
+            alt="Bina"
+          />
           <img class="mx-5" src="assets/img/Magic.png" width="125" alt="Bina" />
         </h5>
       </div>
@@ -1488,12 +1425,12 @@
       </script> -->
 
       <!-- The Plan -->
-      <section class="container">
+      <section class="container mb-5 pb-5">
         <div
           class="text-center pb-4 pt-4 mt-4 pb-md-0 mb-2 mb-md-5 mx-auto"
           style="max-width: 530px"
         >
-          <h2 class="h1">Get started in 3 easy steps.</h2>
+          <h2 class="h2">Get started in 3 easy steps.</h2>
         </div>
 
         <!-- Steps -->
@@ -1631,10 +1568,10 @@
                 >
                   <div class="card-body">
                     <div class="d-flex align-items-center pb-2 pb-md-3 mb-4">
-                      <div class="flex-shrink-0 bg-secondary rounded-3">
+                      <div class="flex-shrink-0 bg-secondary p-2 rounded-3">
                         <img
                           src="assets/img/icons/Drill.png"
-                          width="84"
+                          width="72"
                           alt="Icon"
                         />
                       </div>
@@ -1700,12 +1637,12 @@
                   <div class="card-body">
                     <div class="d-flex align-items-center pb-2 pb-md-3 mb-4">
                       <div
-                        class="flex-shrink-0 rounded-3"
+                        class="flex-shrink-0 p-2 rounded-3"
                         style="background-color: rgba(255, 255, 255, 0.1)"
                       >
                         <img
                           src="assets/img/icons/Tractor.png"
-                          width="84"
+                          width="72"
                           alt="Icon"
                         />
                       </div>
@@ -1780,10 +1717,10 @@
                 >
                   <div class="card-body">
                     <div class="d-flex align-items-center pb-2 pb-md-3 mb-4">
-                      <div class="flex-shrink-0 bg-secondary rounded-3">
+                      <div class="flex-shrink-0 p-2 bg-secondary rounded-3">
                         <img
                           src="assets/img/icons/Crane.png"
-                          width="84"
+                          width="72"
                           alt="Icon"
                         />
                       </div>
@@ -2424,5 +2361,72 @@
         }, 3000);
       });
     </script>
+    <!-- Theme mode -->
+    <script>
+      let mode = window.localStorage.getItem("mode"),
+        root = document.getElementsByTagName("html")[0];
+      if (mode !== undefined && mode === "dark") {
+        root.classList.add("dark-mode");
+      } else {
+        root.classList.remove("dark-mode");
+      }
+    </script>
+
+    <!-- Page loading scripts -->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector(".page-loading");
+          preloader.classList.remove("active");
+          setTimeout(function () {
+            preloader.remove();
+          }, 1000);
+        };
+      })();
+    </script>
+
+    <!-- Modal on Poster script -->
+    <script type="text/javascript">
+      $(window).on("load", function () {
+        $("#myModal").modal("show");
+      });
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "587349362931697");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=587349362931697&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
   </body>
 </html>
