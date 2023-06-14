@@ -19396,6 +19396,11 @@ img-comparison-slider:focus {
   background: linear-gradient(to right, rgba(255, 255, 255, 0.55) var(--buffered-width), rgba(255, 255, 255, 0.3) var(--buffered-width));
 }
 
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 @media (min-width: 1200px) {
   .hide-on-desktop {
       display: none;
@@ -19406,34 +19411,4 @@ img-comparison-slider:focus {
   .hide-on-mobile {
       display: none;
   }
-}
-
-.video-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-}
-
-.play-button:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 15px 0 15px 25px;
-  border-color: transparent transparent transparent white;
 }
