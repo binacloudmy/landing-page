@@ -1572,7 +1572,9 @@
                     </ul>
                   </div>
                   <div class="card-footer border-0 pt-0 pb-4">
-                    <a href="contacts.html" class="btn btn-outline-primary w-100"
+                    <a
+                      href="contacts.html"
+                      class="btn btn-outline-primary w-100"
                       >Start free trial</a
                     >
                   </div>
@@ -1657,7 +1659,9 @@
                     </ul>
                   </div>
                   <div class="card-footer border-0 pt-0 pb-4">
-                    <a href="contacts.html" class="btn btn-light w-100">Start free trial</a>
+                    <a href="contacts.html" class="btn btn-light w-100"
+                      >Start free trial</a
+                    >
                   </div>
                 </div>
               </div>
@@ -1728,7 +1732,9 @@
                     </ul>
                   </div>
                   <div class="card-footer border-0 pt-0 pb-4">
-                    <a href="contacts.html" class="btn btn-outline-primary w-100"
+                    <a
+                      href="contacts.html"
+                      class="btn btn-outline-primary w-100"
                       >Start free trial</a
                     >
                   </div>
@@ -1785,45 +1791,6 @@
               >
             </h3>
           </div>
-          <!-- <div
-            class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
-          >
-            <img
-              src="assets/img/landing/intro/landings/saas-v2.jpg"
-              class="b-block border rounded-3 shadow-sm"
-              alt="SaaS v.2"
-              loading="lazy"
-            />
-            <h3 class="h5 mt-4 mb-3 mb-lg-0">
-              <a
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#videoModal"
-                class="stretched-link"
-                onclick="openModal('BH8oGiGBFd4')"
-                >Example Video 2</a
-              >
-            </h3>
-          </div> -->
-          <!-- <div
-            class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5"
-          >
-            <img
-              src="assets/img/landing/intro/landings/saas-v2.jpg"
-              class="b-block border rounded-3 shadow-sm"
-              alt="SaaS v.2"
-            />
-            <h3 class="h5 mt-4 mb-3 mb-lg-0">
-              <a
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#videoModal"
-                class="stretched-link"
-                onclick="openModal('uT53EUHgQrQ')"
-                >Example Video 3</a
-              >
-            </h3>
-          </div> -->
         </div>
 
         <!-- Mobile -->
@@ -1832,103 +1799,80 @@
           class="carousel slide containerMobile"
           data-bs-ride="carousel">
           <!-- Wrapper for carousel items -->
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div
-                class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
-                <div class="video-wrapper">
-                  <img
-                    src="assets/img/thumbnails/SucessStory.jpg"
-                    class="b-block border rounded-3 shadow-sm"
-                    alt="SaaS v.2"
-                    loading="lazy" />
+          <div class="swiper-container">
+            <div
+              class="swiper mx-n2"
+              data-swiper-options='{
+						"slidesPerView": 1,
+						"pagination": {
+							"el": ".swiper-pagination2",
+							"clickable": true
+						},
+						"breakpoints": {
+							"500": {
+								"slidesPerView": 2
+							},
+							"1000": {
+								"slidesPerView": 2
+							},
+							"1200": {
+								"slidesPerView": 3
+							}
+						}
+					}'>
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <div
+                    class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+                    <div class="video-wrapper">
+                      <img
+                        src="assets/img/thumbnails/SucessStory.jpg"
+                        class="b-block border rounded-3 shadow-sm"
+                        alt="SaaS v.2"
+                        loading="lazy" />
+                    </div>
+                    <h3 class="h5 mt-4 mb-3 mb-lg-0">
+                      <a
+                        href="#"
+                        data-bs-toggle="modal"
+                        data-bs-target="#videoModal1"
+                        class="stretched-link"
+                        >Sucess Story</a
+                      >
+                    </h3>
+                  </div>
                 </div>
-                <h3 class="h5 mt-4 mb-3 mb-lg-0">
-                  <a
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#videoModal1"
-                    class="stretched-link"
-                    >Success Story</a
-                  >
-                </h3>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div
-                class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
-                <div class="video-wrapper">
-                  <img
-                    src="assets/img/bina_thumbnail.png"
-                    class="b-block border rounded-3 shadow-sm"
-                    alt="SaaS v.2"
-                    loading="lazy" />
-                </div>
-                <h3 class="h5 mt-4 mb-3 mb-lg-0">
-                  <a
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#videoModal2"
-                    class="stretched-link"
-                    >Brief Introduction</a
-                  >
-                </h3>
-              </div>
-            </div>
-            <a
-              class="carousel-control-prev"
-              href="#videoCarousel"
-              role="button"
-              data-bs-slide="prev">
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next"
-              href="#videoCarousel"
-              role="button"
-              data-bs-slide="next">
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </a>
 
-            <!-- Add more carousel items as needed -->
-            <!-- <div class="carousel-item">
-            <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
-                <img src="assets/img/landing/intro/landings/saas-v2.jpg" class="b-block border rounded-3 shadow-sm" alt="SaaS v.2" loading="lazy" />
-                <h3 class="h5 mt-4 mb-3 mb-lg-0">
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#videoModal" class="stretched-link" onclick="openModal('BH8oGiGBFd4')">Example Video 2</a>
-                </h3>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <div
+                    class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+                    <div class="video-wrapper">
+                      <img
+                        src="assets/img/bina_thumbnail.png"
+                        class="b-block border rounded-3 shadow-sm"
+                        alt="SaaS v.2"
+                        loading="lazy" />
+                    </div>
+                    <h3 class="h5 mt-4 mb-3 mb-lg-0">
+                      <a
+                        href="#"
+                        data-bs-toggle="modal"
+                        data-bs-target="#videoModal2"
+                        class="stretched-link"
+                        >Brief Introduction</a
+                      >
+                    </h3>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div> -->
-            <!-- Add more carousel items as needed -->
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination2"></div>
           </div>
         </div>
-        <!-- Carousel controls -->
-
-        <!-- Controls -->
-        <!-- <a
-            class="carousel-control-prev"
-            href="#videoCarousel"
-            role="button"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#videoCarousel"
-            role="button"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </a> -->
 
         <!-- Modal For Video -->
         <div
