@@ -406,7 +406,7 @@
       <!-- Item -->
 
       <!-- Contact CTA -->
-      <section class="container mt-n2 mb-n2">
+      <section class="container mt-n2 mb-5">
         <div class="card border-0 bg-gradient-primary">
           <div
             class="card-body p-md-5 p-4 bg-size-cover"
@@ -559,5 +559,18 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Page loading scripts -->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector(".page-loading");
+          preloader.classList.remove("active");
+          setTimeout(function () {
+            preloader.remove();
+          }, 1000);
+        };
+      })();
+    </script>
   </body>
 </html>
