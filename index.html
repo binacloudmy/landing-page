@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <h>
     <meta charset="utf-8" />
     <title>Home | Bina Cloud</title>
 
@@ -80,6 +80,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://www.youtube.com/player_api"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
 
     <!-- Page loading styles -->
     <style>
@@ -1773,12 +1778,103 @@
         </div>
       </section>
 
+<!-- Test -->
+<section id="video" class="container text-center mt-2 mt-md-4 mt-lg-5">
+  <h2 class="h1 pt-2 pt-lg-0">Revolutionizing Construction Industry</h2>
+
+  <!-- Desktop -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 containerDesktop" style="justify-content: center">
+    <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+      <div class="video-wrapper">
+        <img src="assets/img/thumbnails/SucessStory2.png" class="d-block border rounded-3 shadow-sm" alt="Success Story" loading="lazy" />
+      </div>
+      <h3 class="h5 mt-4 mb-3 mb-lg-0">
+        <a type="button" data-bs-toggle="modal" data-bs-target="#videoModal1" data-video-id="495y4WxqwFo" class="stretched-link">Success Story</a>
+      </h3>
+    </div>
+    <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+      <div class="video-wrapper">
+        <img src="assets/img/bina_thumbnail.png" class="d-block border rounded-3 shadow-sm" alt="Brief Introduction" loading="lazy" />
+      </div>
+      <h3 class="h5 mt-4 mb-3 mb-lg-0">
+        <a type="button" data-bs-toggle="modal" data-bs-target="#videoModal2" data-video-id="O3p0Cx0G01Q" class="stretched-link">Brief Introduction</a>
+      </h3>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div id="videoCarousel" class="carousel slide containerMobile" data-bs-ride="carousel">
+    <div class="swiper-container">
+      <div class="swiper mx-n2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+              <div class="video-wrapper">
+                <img src="assets/img/thumbnails/SucessStory2.png" class="d-block border rounded-3 shadow-sm" alt="Success Story" loading="lazy" />
+              </div>
+              <h3 class="h5 mt-4 mb-3 mb-lg-0">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal1" data-video-id="495y4WxqwFo" class="stretched-link">Success Story</a>
+              </h3>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+              <div class="video-wrapper">
+                <img src="assets/img/bina_thumbnail.png" class="d-block border rounded-3 shadow-sm" alt="Brief Introduction" loading="lazy" />
+              </div>
+              <h3 class="h5 mt-4 mb-3 mb-lg-0">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal2" data-video-id="O3p0Cx0G01Q" class="stretched-link">Brief Introduction</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="videoModalLabel1">Success Story</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="video1" style="max-width: 100%;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="videoModalLabel2">Brief Introduction</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="video2" style="max-width: 100%;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <!-- Video Section -->
-      <section id="video" class="container text-center mt-2 mt-md-4 mt-lg-5">
-        <h2 class="h1 pt-2 pt-lg-0">Revolutionizing Construction Industry</h2>
+      <!-- <section id="video" class="container text-center mt-2 mt-md-4 mt-lg-5">
+        <h2 class="h1 pt-2 pt-lg-0">Revolutionizing Construction Industry</h2>  -->
 
         <!-- Desktop -->
-        <div
+        <!-- <div
           class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 containerDesktop"
           style="justify-content: center">
           <div
@@ -1796,7 +1892,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#videoModal1"
                 class="stretched-link">
-                Sucess Story</a
+                Success Story</a
               >
             </h3>
           </div>
@@ -1819,15 +1915,15 @@
               >
             </h3>
           </div>
-        </div>
+        </div> -->
 
         <!-- Mobile -->
-        <div
+        <!-- <div
           id="videoCarousel"
           class="carousel slide containerMobile"
-          data-bs-ride="carousel">
+          data-bs-ride="carousel"> -->
           <!-- Wrapper for carousel items -->
-          <div class="swiper-container">
+          <!-- <div class="swiper-container">
             <div
               class="swiper mx-n2"
               data-swiper-options='{
@@ -1848,9 +1944,9 @@
 							}
 						}
 					}'>
-              <div class="swiper-wrapper">
+              <div class="swiper-wrapper"> -->
                 <!-- Slide 1 -->
-                <div class="swiper-slide">
+                <!-- <div class="swiper-slide">
                   <div
                     class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
                     <div class="video-wrapper">
@@ -1866,14 +1962,14 @@
                         data-bs-toggle="modal"
                         data-bs-target="#videoModal1"
                         class="stretched-link"
-                        >Sucess Story</a
+                        >Success Story</a
                       >
                     </h3>
                   </div>
                 </div>
 
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
+                <!- Slide 2 -->
+                <!-- <div class="swiper-slide">
                   <div
                     class="card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
                     <div class="video-wrapper">
@@ -1895,15 +1991,15 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Add Pagination -->
-            <div class="swiper-pagination2"></div>
+            <!-- <div class="swiper-pagination2"></div>
           </div>
-        </div>
+        </div> --> 
 
         <!-- Modal For Video -->
-        <div
+        <!-- <div
           class="modal fade"
           id="videoModal1"
           tabindex="-1"
@@ -1932,9 +2028,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div
+        <!-- <div
           class="modal fade"
           id="videoModal2"
           tabindex="-1"
@@ -1964,7 +2060,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <!-- End of Video Section -->
 
@@ -2383,23 +2479,137 @@
     </script>
 
     <script>
-      // Function to open the modal and load the YouTube video
-      // function openModal(videoId) {
-      //   console.log(videoId);
-      //   var player = new YT.Player("player", {
-      //     height: "608",
-      //     width: "1080",
-      //     videoId: videoId,
-      //     playerVars: {
-      //       autoplay: 0,
-      //       controls: 1,
-      //       modestbranding: 1,
-      //       rel: 0,
-      //       showinfo: 0,
-      //       fs: 1,
-      //     },
-      //   });
-      // }
+      let player1, player2; // Global player instances for each modal
+
+      // Function to load a video in a specific player container
+      function loadVideo(playerId, videoId) {
+        console.log(`Loading video ${videoId} in ${playerId}`);
+        let playerInstance = playerId === "video1" ? player1 : player2;
+
+      if (playerInstance) {
+        playerInstance.destroy(); // Clean up existing player
+       }
+
+      playerInstance = new YT.Player(playerId, {
+        height: "608",
+        width: "1080",
+        videoId: videoId,
+        playerVars: {
+          autoplay: 1, // Play when modal opens
+          controls: 1,
+          modestbranding: 1,
+          rel: 0,
+          fs: 1,
+        },
+        events: {
+          onReady: function(event) {
+            console.log(`Player ready for ${videoId}`);
+            event.target.playVideo();
+          },
+          onError: function(event) {
+            console.error(`Error with ${videoId}:`, event.data);
+            alert("Error loading video. It may be unavailable.");
+          }
+        }
+      });
+
+      if (playerId === "video1") player1 = playerInstance;
+      else player2 = playerInstance;
+    }
+
+    // Initialize everything when DOM is ready
+    $(document).ready(function() {
+      // Swiper initialization
+      const swiper = new Swiper(".swiper", {
+        slidesPerView: 1,
+        spaceBetween: 8,
+        pagination: {
+          el: ".swiper-pagination2",
+          clickable: true,
+        },
+        breakpoints: {
+          500: { slidesPerView: 2 },
+          1000: { slidesPerView: 2 },
+          1200: { slidesPerView: 3 },
+        }
+      });
+
+      // Click handler for modal triggers
+      $("[data-bs-toggle='modal']").on("click", function() {
+        const videoId = $(this).data("video-id");
+        const modalTarget = $(this).data("bs-target");
+        const playerId = modalTarget === "#videoModal1" ? "video1" : "video2";
+        loadVideo(playerId, videoId);
+      });
+
+      // Cleanup when modals close
+      $("#videoModal1").on("hidden.bs.modal", function() {
+        if (player1) {
+          player1.stopVideo();
+          player1.destroy();
+          player1 = null;
+          console.log("Player1 destroyed");
+        }
+      });
+
+      $("#videoModal2").on("hidden.bs.modal", function() {
+        if (player2) {
+          player2.stopVideo();
+          player2.destroy();
+          player2 = null;
+          console.log("Player2 destroyed");
+          }
+        });
+      });
+    </script>
+
+    <!-- <script>
+     function onYouTubePlayerAPIReady() {
+       var player1 = new YT.Player("video1", {
+        height: "608",
+      width: "1080",
+      videoId: "495y4WxqwFo",
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        fs: 1,
+      },
+    });
+
+    var player2 = new YT.Player("video2", {
+      height: "608",
+      width: "1080",
+      videoId: "O3p0Cx0G01Q",
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        fs: 1,
+      },
+    });
+  }
+     // Function to open the modal and load the YouTube video
+      function openModal(videoId) {
+        console.log(videoId);
+        var player = new YT.Player("player", {
+          height: "608",
+          width: "1080",
+          videoId: videoId,
+          playerVars: {
+            autoplay: 0,
+            controls: 1,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+            fs: 1,
+          },
+        });
+      }
 
       // Initialize YouTube API
       function onYouTubePlayerAPIReady() {
@@ -2434,6 +2644,7 @@
         // This function is called automatically by the YouTube Player API
       }
 
+      
       // Listen for modal open event and initialize YouTube API
       $("#videoModal").on("show.bs.modal", function (e) {
         onYouTubePlayerAPIReady();
@@ -2479,7 +2690,7 @@
           },
         },
       });
-    </script>
+    </script> -->
     <script>
       // JavaScript or jQuery code to rotate the text every 5 seconds
       $(document).ready(function () {
