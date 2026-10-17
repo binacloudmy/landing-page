@@ -1,0 +1,85 @@
+---
+import YouTube from './YouTube.astro';
+
+const facts = [
+  { big: 'RVT, IFC, DWG, NWD', small: 'Model formats' },
+  { big: '5 disciplines', small: 'In one federated view' },
+  { big: 'Offline', small: 'Site diary on iOS and Android' },
+  { big: 'BCF', small: 'Issue exchange' },
+];
+
+const quotes = [
+  {
+    text: 'Before using BinaCloud, manual procedures caused confusion and delays. Since deploying BinaCloud, our team has collaborated more efficiently and effectively, resulting in faster project completion and more client satisfaction.',
+    name: 'Akram',
+    role: 'Managing Director',
+    company: 'Landlord Sdn Bhd',
+  },
+  {
+    text: "Since implementing BinaCloud, we've seen a significant improvement in our team's collaboration and project management. The real-time progress tracking and streamlined submittals have helped us stay on schedule and avoid costly mistakes.",
+    name: 'Ashif',
+    role: 'Document Controller',
+    company: 'Senghoti Technologies Sdn Bhd',
+  },
+  {
+    text: "At first, we were hesitant to invest in BinaCloud due to its high cost but The cost savings we've experienced since using BinaCloud have more than made up for the initial investment. We're now able to complete projects faster and with higher quality, making BinaCloud worth every penny.",
+    name: 'Nadzru Rahman',
+    role: 'Chief Executive Officer',
+    company: 'Merititan Sdn Bhd',
+  },
+];
+
+const videos = [
+  { id: '495y4WxqwFo', title: 'Success Story' },
+  { id: 'O3p0Cx0G01Q', title: 'Brief Introduction' },
+];
+---
+
+<section id="proof" class="py-[var(--section-gap)]">
+  <div class="gutter">
+    <h2 class="max-w-[16ch] text-title font-semibold">Built for the whole project team.</h2>
+  </div>
+
+  <dl class="gutter mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      facts.map((f) => (
+        <div>
+          <dt class="text-title font-semibold [overflow-wrap:anywhere]">{f.big}</dt>
+          <dd class="mt-3 text-white/75">{f.small}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <div class="gutter mt-[var(--section-gap)] grid gap-px md:grid-cols-3">
+    {
+      quotes.map((q) => (
+        <figure class="flex flex-col justify-between bg-ink-2 p-6 sm:p-8">
+          <blockquote class="text-body text-white/90">
+            <p>{q.text}</p>
+          </blockquote>
+          <figcaption class="mt-8">
+            <p class="font-semibold">{q.name}</p>
+            <p class="text-small text-polo-blue">
+              {q.role}, {q.company}
+            </p>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+
+  <div class="gutter mt-[var(--section-gap)]">
+    <h3 class="text-title font-semibold">See it in use.</h3>
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      {
+        videos.map((v) => (
+          <div>
+            <YouTube id={v.id} title={v.title} />
+            <p class="mt-3 font-semibold">{v.title}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

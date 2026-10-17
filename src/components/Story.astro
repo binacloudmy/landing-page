@@ -1,0 +1,344 @@
+---
+import { Image } from 'astro:assets';
+import { DEMO_URL } from '../config';
+import poster from '../assets/hero-poster.webp';
+
+// Discipline labels follow their group on the canvas during the federation beat.
+// Colours match DISCIPLINE_COLOURS in src/scene/heroScene.ts.
+const disciplines = [
+  { group: 'architecture', label: 'Architecture', colour: '#058dd8' },
+  { group: 'interior', label: 'Interiors', colour: '#90b5cb' },
+  { group: 'mep', label: 'MEP', colour: '#5bba5f' },
+  { group: 'structure', label: 'Structure', colour: '#f2a93b' },
+  { group: 'site', label: 'Civil and site', colour: '#7c8f63' },
+];
+---
+
+<!--
+  The scroll story. The canvas sits in a sticky, full-screen layer at the top
+  of #story and the beat sections scroll past it; ScrollTrigger scrubs the
+  model through one timeline across the whole of #story (src/scene/heroScene.ts).
+  Each beat section is taller than the screen, which is the scroll room the
+  model gets for that beat.
+
+  With JavaScript, each beat's copy moves into the same sticky layer and stays
+  put; when a section crosses 55% of the screen its copy swaps in and the last
+  one swaps out (the script below). Without it, the copy scrolls with its section.
+-->
+<div id="story" class="relative">
+  <!-- The sections pull up under this layer (the hero's -mt), rather than this layer having a
+       negative bottom margin, which would let it stay stuck a full screen past the end of #story. -->
+  <div class="sticky top-0 h-svh w-full overflow-hidden">
+    <canvas id="scene" aria-hidden="true" class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-700 data-[ready]:opacity-100"></canvas>
+    <div id="scene-labels" aria-hidden="true" class="pointer-events-none absolute inset-0 hidden opacity-0 sm:block">
+      {
+        disciplines.map((d) => (
+          <span
+            data-group={d.group}
+            class="absolute left-0 top-0 ml-4 -translate-y-1/2 whitespace-nowrap text-small font-semibold will-change-transform"
+          >
+            <span class="mr-2 inline-block size-2 align-middle" style={`background:${d.colour}`} />
+            {d.label}
+          </span>
+        ))
+      }
+    </div>
+    <!-- Shown when WebGL is missing or the model fails to load: a still of the hero shot. -->
+    <div id="scene-fallback" hidden aria-hidden="true" class="absolute inset-0">
+      <Image src={poster} alt="" widths={[720, 1440]} sizes="100vw" class="h-full w-full object-cover object-right lg:pl-[20vw]" />
+    </div>
+    <div id="story-layer" class="story-layer"></div>
+  </div>
+
+  <section id="hero" data-beat="hero" class="story-beat relative -mt-[100svh] flex min-h-[115svh] items-start lg:min-h-[130svh]">
+    <div class="gutter story-copy flex min-h-svh flex-col justify-end pb-10 lg:block lg:min-h-0 lg:pb-0 lg:pt-[26svh]">
+      <h1 class="story-title text-display font-semibold">From BIM model to site handover.</h1>
+      <p class="mt-6 max-w-xl text-lead text-white/75">
+        Bina Cloud puts design coordination and the construction site in one place: federated models,
+        clash issues, approvals, site diaries and signed documents.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={DEMO_URL} class="btn btn-primary">Book a demo</a>
+        <a href="#proof" class="btn btn-quiet">Watch the overview</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="design">
+    <section id="federation" data-beat="federation" class="story-beat relative lg:min-h-[170svh]">
+      <div class="story-panel">
+        <p class="text-small font-semibold text-bina-blue">Design · Federation</p>
+        <h2 class="mt-3 text-title font-semibold">Every discipline, one model.</h2>
+        <p class="mt-5 text-white/75">
+          Architecture, structure, MEP and civil models load into a single 3D view, placed by their shared
+          coordinates. Browse by discipline and status, publish versions, and share the federated model with
+          the whole project team.
+        </p>
+        <ul class="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-small text-white/80">
+          {
+            disciplines.map((d) => (
+              <li>
+                <span class="mr-2 inline-block size-2 align-middle" style={`background:${d.colour}`} />
+                {d.label}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="clash" data-beat="clash" class="story-beat relative lg:min-h-[170svh]">
+      <div class="story-panel">
+        <p class="text-small font-semibold text-bina-blue">Design · Coordination</p>
+        <h2 class="mt-3 text-title font-semibold">Catch the clash before it is poured.</h2>
+        <p class="mt-5 text-white/75">
+          Bring in Navisworks clash reports, see every clash on the clash detection dashboard, and turn each
+          one into a numbered coordination issue with an owner, a priority and a status. Share issues as BCF.
+        </p>
+        <dl class="mt-8 bg-ink-2 p-5 text-small">
+          <div class="flex items-baseline justify-between gap-4">
+            <dt class="font-semibold">Issue #CI-014</dt>
+            <dd class="font-semibold text-danger">High priority</dd>
+          </div>
+          <dd class="mt-2 text-white/80">Water tank intersects external wall, grid C/4</dd>
+          <div class="mt-4 grid grid-cols-2 gap-3 text-white/60">
+            <div><dt>Assigned</dt><dd class="text-white">MEP Coordinator</dd></div>
+            <div><dt>Status</dt><dd class="text-white">Open</dd></div>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="review" data-beat="review" class="story-beat relative lg:min-h-[170svh]">
+      <div class="story-panel">
+        <p class="text-small font-semibold text-bina-blue">Design · Review</p>
+        <h2 class="mt-3 text-title font-semibold">Compare versions. Approve with a record.</h2>
+        <p class="mt-5 text-white/75">
+          Submit a model for review and compare it against the last version. Reviewers mark up the model, raise
+          issues from their markups, and approve or reject, all in the audit log, under the roles set out in
+          your BIM Execution Plan.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-2 text-small font-semibold">
+          <span class="bg-ink-3 px-3 py-2">v3 against v2</span>
+          <span class="bg-success/15 px-3 py-2 text-success">Approved by Lead Coordinator</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="to-site" data-beat="to-site" class="story-beat relative lg:min-h-[150svh]">
+      <div class="story-panel">
+        <p class="text-small font-semibold text-bina-blue">Design to Construction</p>
+        <h2 class="mt-3 text-title font-semibold">Then the model goes to site.</h2>
+        <p class="mt-5 text-white/75">
+          Approved models and drawings reach the site team the moment they are published. On site, a markup on a
+          drawing becomes a task with a pin, an assignee and a photo.
+        </p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+  /* Desktop: copy runs down the left third; the scene shifts its view right to
+     keep the model clear of it. Phones: the model sits in the top part of the
+     screen and each solid copy panel scrolls up over it while the beat holds. */
+  .story-copy {
+    position: relative;
+    max-width: 52rem;
+  }
+  /* Padding on the section, not a margin on the panel, which would collapse through it. */
+  .story-beat:not(#hero) {
+    padding-top: 75svh; /* the panel arrives once the beat has finished moving (heroScene.ts: section top at 25% of the screen) */
+  }
+  /* Phones: sections are as tall as their content (the 75svh move, the panel,
+     a short pause), so no beat leaves a long stretch with nothing to read. */
+  .story-beat:not(#hero) {
+    padding-bottom: 20svh;
+  }
+  /* The hero copy scrolls up across the model too, so it gets the same solid ground. */
+  @media (max-width: 1023px) {
+    .story-copy > * {
+      position: relative;
+    }
+    .story-copy {
+      justify-content: flex-end;
+    }
+    .story-copy::before {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: calc(100% - 50svh);
+      background: var(--color-ink);
+    }
+  }
+  .story-panel {
+    position: relative;
+    margin-inline: var(--gutter);
+    max-width: 30rem;
+    padding: 1.5rem;
+    background: var(--color-ink);
+  }
+  @media (min-width: 1024px) {
+    /* Keep the headline in the copy column, clear of the model (view shifted right by 20%). */
+    .story-copy {
+      max-width: min(52rem, 42vw);
+    }
+    /* The panel sticks a little above centre and lets go 45svh before its
+       section ends (sticky stays inside the content box, not the padding), so
+       one panel has left before the next arrives. */
+    .story-beat:not(#hero) {
+      padding-top: 0;
+      padding-bottom: 45svh;
+    }
+    .story-panel {
+      position: sticky;
+      top: clamp(calc(var(--header-h) + 2rem), calc(50svh - 16rem), 40svh);
+      margin-left: calc(var(--gutter) * 2);
+      padding: 0;
+      background: none;
+    }
+  }
+
+  /* ---- Pinned copy (#story.is-pinned, set by the script) ---------------- */
+  .story-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .is-pinned .story-beat:not(#hero) {
+    padding: 0;
+  }
+  /* Every beat's copy sits in one place. The current one is shown; the others
+     wait just above (beats already passed) or just below (beats to come), so a
+     swap moves the right way whichever way the page is scrolled. */
+  .is-pinned .story-layer > * {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.22s ease,
+      transform 0.45s var(--ease-out-expo);
+  }
+  .is-pinned .story-layer > [data-pos='before'] {
+    transform: translateY(-32px);
+  }
+  .is-pinned .story-layer > [data-active] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 0.12s; /* the outgoing copy clears first */
+  }
+  /* Phones: the copy is pinned to the bottom on solid ground, the model above it. */
+  @media (max-width: 1023px) {
+    .is-pinned .story-beat:not(#hero) {
+      min-height: 140svh;
+    }
+    .is-pinned .story-layer > .story-panel,
+    .is-pinned .story-layer > .story-copy {
+      inset: auto 0 0 0;
+      max-width: none;
+      min-height: 0;
+      margin: 0;
+      padding: 1.25rem var(--gutter) 1.75rem;
+      background: var(--color-ink);
+    }
+    .is-pinned .story-layer > .story-copy::before {
+      content: none;
+    }
+  }
+  @media (min-width: 1024px) {
+    /* Centred like the panels, so the paragraph and buttons stay above the fold. */
+    .is-pinned .story-layer > .story-copy {
+      top: calc(50% + var(--header-h) / 2);
+      left: 0;
+      padding-top: 0;
+      translate: 0 -50%;
+    }
+    /* Capped by height too, so short screens still fit the whole hero. */
+    .story-title {
+      font-size: clamp(2.75rem, min(9vw, 13svh), 8rem);
+    }
+    .is-pinned .story-layer > .story-panel {
+      top: 50%;
+      left: 0;
+      translate: 0 -50%;
+    }
+  }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    const lenis = new Lenis({ anchors: { offset: -64 } });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  const canvas = document.getElementById('scene') as HTMLCanvasElement;
+  const story = document.getElementById('story')!;
+  const fallback = document.getElementById('scene-fallback')!;
+
+  // Pin the copy: move each beat's copy into the sticky layer, and swap the
+  // current one when its section crosses 55% of the screen.
+  const layer = document.getElementById('story-layer')!;
+  const sections = [...story.querySelectorAll<HTMLElement>('[data-beat]')];
+  const copies = sections.map((s) => s.querySelector<HTMLElement>('.story-copy, .story-panel')!);
+  layer.append(...copies);
+  story.classList.add('is-pinned');
+  let active = -1;
+  const show = (i: number) => {
+    if (i === active) return;
+    active = i;
+    copies.forEach((c, k) => {
+      c.toggleAttribute('data-active', k === i);
+      if (k === i) c.removeAttribute('data-pos');
+      else c.dataset.pos = k < i ? 'before' : 'after';
+      // Hidden copy keeps its text for screen readers, but its links must not take focus.
+      if (c.querySelector('a, button')) c.inert = k !== i;
+    });
+  };
+  // The current beat is the last section whose top has passed 55% of the
+  // screen, read from the scroll position on every update, so a jump past
+  // several sections (an anchor link, a hard fling) still lands on the right one.
+  // Once the Construction stage has locked in over the story's last screen,
+  // its hero takes over and the story's copy steps out (Construction.astro).
+  const cx = document.getElementById('cx');
+  const pick = () => {
+    if (cx && cx.classList.contains('is-pinned') && cx.getBoundingClientRect().top <= 1) return show(sections.length);
+    const line = window.innerHeight * 0.55;
+    let i = 0;
+    sections.forEach((s, k) => {
+      if (s.getBoundingClientRect().top <= line) i = k;
+    });
+    show(i);
+  };
+  pick();
+  ScrollTrigger.create({ trigger: story, start: 'top bottom', end: 'bottom top', onUpdate: pick, onRefresh: pick });
+
+  // Imported as a URL so the file name carries a content hash (the server caches assets for a year).
+  const { default: modelUrl } = await import('../assets/models/hero.glb?url');
+  const { initHeroScene, webglAvailable } = await import('../scene/heroScene');
+  if (!webglAvailable()) {
+    canvas.hidden = true;
+    fallback.hidden = false;
+  } else {
+    initHeroScene({
+      canvas,
+      story,
+      modelUrl,
+      labels: document.getElementById('scene-labels')!,
+      onReady: () => canvas.setAttribute('data-ready', ''),
+    }).catch((err) => {
+      console.error('[hero-scene]', err);
+      canvas.hidden = true;
+      fallback.hidden = false;
+    });
+  }
+</script>

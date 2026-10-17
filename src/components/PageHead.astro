@@ -1,0 +1,14 @@
+---
+// Dark title band for subpages; sits under the transparent header.
+---
+
+<section class="bg-ink pb-16 pt-32 md:pb-24 md:pt-44">
+  <div class="gutter">
+    <h1 class="max-w-[22ch] text-title font-bold text-balance">
+      <slot name="title" />
+    </h1>
+    <div class="mt-6 max-w-2xl text-lead text-white">
+      <slot />
+    </div>
+  </div>
+</section>

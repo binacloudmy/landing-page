@@ -1,0 +1,42 @@
+---
+import { DEMO_URL } from '../config';
+
+const member = 'Member Management';
+const docs = 'Document Management & Access Control';
+const flow = 'Digital Request & Approval Workflow';
+const draw = 'Drawing Collaboration, Annotation & Versioning';
+const task = 'Task Management tools';
+const photo = 'Site Photo & Video Streaming';
+const dash = 'Analytics Dashboard';
+const sched = 'Schedule Tracking and Delay Detection';
+const bim = 'BIM Visualization, Collaboration & Versioning';
+
+const packages = [
+  { name: 'Document Management', includes: [member, docs, flow], featured: false },
+  { name: 'Project Management', includes: [member, docs, flow, draw, task, photo, dash, sched], featured: false },
+  { name: 'Project Management + BIM Integration', includes: [member, docs, flow, draw, task, photo, dash, sched, bim], featured: true },
+];
+---
+
+<section id="pricing" class="py-[var(--section-gap)]">
+  <div class="gutter">
+    <h2 class="max-w-[16ch] text-title font-semibold">Start with what your project needs.</h2>
+    <p class="mt-5 max-w-xl text-lead text-white/75">Three packages, from documents to the full BIM workflow. Talk to us and we will size it to your team.</p>
+  </div>
+
+  <div class="gutter mt-16 grid items-stretch gap-px lg:grid-cols-3">
+    {
+      packages.map((p) => (
+        <article class={`flex flex-col p-6 sm:p-8 ${p.featured ? 'bg-ink-3' : 'bg-ink-2'}`}>
+          <h3 class="text-lead font-semibold">{p.name}</h3>
+          <ul class="mt-8 space-y-3">
+            {p.includes.map((i) => <li class="text-white/90">{i}</li>)}
+          </ul>
+          <a href={DEMO_URL} class={`btn mt-10 self-start ${p.featured ? 'btn-primary' : 'btn-quiet'}`}>
+            Talk to sales
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>

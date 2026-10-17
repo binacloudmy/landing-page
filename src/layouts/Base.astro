@@ -1,0 +1,108 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  FB_DOMAIN_VERIFICATION,
+  GA4_ID,
+  META_PIXEL_ID,
+  SITE_URL,
+} from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = DEFAULT_TITLE, description = DEFAULT_DESCRIPTION } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
+const canonical = new URL(path === '' || path === '/index' ? '/' : path, SITE_URL).href;
+const ogImage = new URL('/og.png', SITE_URL).href;
+
+const gtagSnippet = `window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag("js", new Date());
+gtag("config", "${GA4_ID}");`;
+
+const pixelSnippet = `!(function (f, b, e, v, n, t, s) {
+  if (f.fbq) return;
+  n = f.fbq = function () {
+    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+  };
+  if (!f._fbq) f._fbq = n;
+  n.push = n;
+  n.loaded = !0;
+  n.version = "2.0";
+  n.queue = [];
+  t = b.createElement(e);
+  t.async = !0;
+  t.src = v;
+  s = b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t, s);
+})(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "${META_PIXEL_ID}");
+fbq("track", "PageView");`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Bina CloudTech" />
+    <meta name="theme-color" content="#001529" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bina Cloud" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/logo.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Facebook domain verification -->
+    <meta name="facebook-domain-verification" content={FB_DOMAIN_VERIFICATION} />
+
+    <!-- Google tag (GA4) -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+    <script is:inline set:html={gtagSnippet} />
+
+    <!-- Meta Pixel Code -->
+    <script is:inline set:html={pixelSnippet} />
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+        alt=""
+      />
+    </noscript>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-primary focus:px-4 focus:py-3 focus:text-white"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

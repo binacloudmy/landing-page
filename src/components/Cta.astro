@@ -1,0 +1,18 @@
+---
+import { DEMO_URL, APP_URL, CONTACT } from '../config';
+---
+
+<section id="cta" class="bg-primary py-[var(--section-gap)]">
+  <div class="gutter">
+    <h2 class="max-w-[14ch] text-display font-semibold">See your own model in Bina Cloud.</h2>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href={DEMO_URL} class="btn bg-ink text-white hover:bg-ink-3">Book a demo</a>
+      <a href={APP_URL} class="btn bg-white text-ink hover:bg-paper">Log in</a>
+    </div>
+    <p class="mt-10 text-lead">
+      <a href={`tel:${CONTACT.phone.replace(/[^0-9+]/g, '')}`} class="underline underline-offset-4">{CONTACT.phone}</a>
+      <span class="mx-2" aria-hidden="true">·</span>
+      <a href={`mailto:${CONTACT.email}`} class="underline underline-offset-4">{CONTACT.email}</a>
+    </p>
+  </div>
+</section>

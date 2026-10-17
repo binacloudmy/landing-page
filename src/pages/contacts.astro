@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { CONTACT, DEMO_URL } from '../config';
+import meranti from '../assets/partners/meranti.png';
+import cloudAlpha from '../assets/partners/Cloud_Alpha.png';
+import unifi from '../assets/partners/unifi-logo-biz.png';
+import stsb from '../assets/partners/ST_SB.png';
+import magic from '../assets/partners/Magic.png';
+
+const partners = [
+  { src: meranti, alt: 'Meranti', h: 56 },
+  { src: cloudAlpha, alt: 'Cloud Alpha', h: 56 },
+  { src: unifi, alt: 'Unifi', h: 48 },
+  { src: stsb, alt: 'ST SB', h: 56 },
+  { src: magic, alt: 'Magic', h: 56 },
+];
+---
+
+<Base title="BINA | Contacts" description="Cloud-based Construction Project Management Software">
+  <PageHead>
+    <Fragment slot="title">Contact Us</Fragment>
+    <p>
+      We'd love to hear from you <br />Please fill out the contact form below and we’ll get back to you
+      shortly.
+    </p>
+  </PageHead>
+
+  <section class="bg-paper text-ink gutter py-16 md:py-24">
+    <div class="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-24">
+      <!-- Contact details -->
+      <div>
+        <h2 class="text-lead font-semibold">Other ways to connect</h2>
+        <ul class="mt-8 space-y-8">
+          <li>
+            <h3 class="text-body font-semibold">Email us</h3>
+            <a href={`mailto:${CONTACT.email}`} class="mt-1 inline-block text-dark-blue underline underline-offset-4 hover:text-primary">{CONTACT.email}</a>
+          </li>
+          <li>
+            <h3 class="text-body font-semibold">Schedule A Call</h3>
+            <!-- Calendly popup widget; the href is the no-script fallback. -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+            <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <a
+              href={DEMO_URL}
+              class="mt-1 inline-block text-dark-blue underline underline-offset-4 hover:text-primary"
+              onclick="Calendly.initPopupWidget({url: 'https://calendly.com/binacloud/contact-sales'});return false;"
+            >
+              Book a time with sales
+            </a>
+          </li>
+          <li>
+            <h3 class="text-body font-semibold">Tech Support</h3>
+            <a href={`mailto:${CONTACT.email}`} class="mt-1 inline-block text-dark-blue underline underline-offset-4 hover:text-primary">{CONTACT.email}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Form -->
+      <div class="min-w-0">
+        <h2 class="text-title font-bold">Schedule a demo</h2>
+        <div class="mt-10 min-w-0 max-w-full overflow-x-auto">
+          <script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+          <script is:inline>
+            window.hbspt.forms.create({
+              region: "na1",
+              portalId: "22729558",
+              formId: "990ba7d7-5963-4f5f-bcf6-66d52e25b5bf",
+              version: "V2_PRERELEASE"
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12" aria-label="Customers">
+    <ul class="gutter flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+      {
+        partners.map((p) => (
+          <li>
+            <Image src={p.src} alt={p.alt} height={p.h * 2} widths={[160, 320]} sizes="160px" class="w-auto max-w-[40vw] object-contain" style={`height:${p.h}px`} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

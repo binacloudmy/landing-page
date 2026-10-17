@@ -1,0 +1,272 @@
+---
+import { Image } from 'astro:assets';
+import dashboard from '../assets/product/live-dashboard.webp';
+import dashboardPhone from '../assets/product/live-dashboard-phone.webp';
+import drawing from '../assets/product/live-drawing.webp';
+import drawingPhone from '../assets/product/live-drawing-phone.webp';
+import workspace from '../assets/product/live-workspace.webp';
+import workspacePhone from '../assets/product/live-workspace-phone.webp';
+
+// Screens captured from the live app (Internal - BINA CLOUDTECH project), with
+// the account avatar hidden and the drawing's signature and title block
+// blurred. Like the Design story (Story.astro), the copy and the screen stay
+// fixed on one pinned stage and swap when each step crosses 55% of the screen;
+// phones show a crop of the part of each screen that matters.
+const features = [
+  {
+    eyebrow: 'Construction · Dashboard',
+    title: 'The whole project on one screen.',
+    image: dashboard,
+    phone: dashboardPhone,
+    alt: 'The project dashboard: physical progress as an S-curve of schedule against actual from 2021 to 2025, with the site weather, a calendar and the current site diary beside it.',
+    text: 'See where the project stands the moment you open it: progress against schedule, the weather on site, what is coming up, and whether today\'s diary is in.',
+    points: ['Physical and financial progress curves', 'Schedule against actual', 'Site weather and calendar'],
+  },
+  {
+    eyebrow: 'Construction · Drawings',
+    title: 'Mark up the sheet. Pin it to a task.',
+    image: drawing,
+    phone: drawingPhone,
+    alt: 'A road junction drawing open in the Bina Cloud sheet viewer, with the markup toolbar along the bottom and the Tasks, Layers and Versions panels on the right.',
+    text: 'Upload drawings and open any sheet. Mark it up, measure it, and pin a markup to a task.',
+    points: ['Markups and measuring on the sheet', 'Versions of every drawing', 'Layers you can switch on and off'],
+  },
+  {
+    eyebrow: 'Construction · Workspace',
+    title: 'Fill it, sign it, track it.',
+    image: workspace,
+    phone: workspacePhone,
+    alt: 'The Workspace overview: document groups such as Site Diary, Non Conformance Report, Request For Information and Claim, with how many are submitted, pending, in review, approved or rejected.',
+    text: 'Start from a template, fill it in and sign it. Request approval, review it, and see where every document stands by its status.',
+    verify: true,
+  },
+];
+
+// The rest of the construction side, without a screen of its own.
+const more = [
+  {
+    title: 'AI Site Diary',
+    text: 'Record each working day, from the office or from mobile, then submit it to the people who sign it. They sign or send it back, and the signed diary exports to PDF.',
+  },
+  {
+    title: 'Cloud Docs and Correspondence',
+    text: 'Project files in folders, with versions, sharing and preview. Project letters are tracked too, with attachments and a status on each.',
+  },
+  {
+    title: 'Tasks and Photos',
+    text: 'Group tasks, assign them and move them through their statuses. Site photos and videos sit in folders beside them.',
+  },
+];
+---
+
+<section id="construction" class="py-[var(--section-gap)]">
+  <!--
+    With JavaScript, the chapter hero and each step's copy and screen move onto
+    the pinned stage and the steps become empty scroll room. The section also
+    pulls up one screen under the end of the Design story, so the stage locks in
+    as the model finishes fading and the story's last copy swaps straight to this
+    hero (Story.astro hides its copy once #cx reaches the top). Without
+    JavaScript, it all reads as a list.
+  -->
+  <div id="cx" class="relative">
+    <div class="cx-stage sticky top-0 hidden h-svh overflow-hidden">
+      <div class="cx-hero-slot gutter absolute inset-0 grid content-center pt-[var(--header-h)]"></div>
+      <div class="gutter grid h-full content-center gap-8 pt-[var(--header-h)] lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:pt-0">
+        <div class="cx-copy grid lg:order-1"></div>
+        <div class="cx-shots grid lg:order-2"></div>
+      </div>
+    </div>
+
+    <ol class="list-none">
+      <li class="cx-step gutter pb-6">
+        <div class="cx-hero max-w-5xl">
+          <p class="text-small font-semibold text-bina-blue">Construction</p>
+          <h2 class="cx-hero-title mt-4 text-display font-semibold">Run the site from the same platform.</h2>
+          <p class="mt-6 max-w-2xl text-lead text-white/75">
+            The diary, the drawings, the signed forms and the site tasks are in the same project as the model, so
+            nothing has to be re-sent or re-typed.
+          </p>
+          <ul class="mt-10 flex flex-wrap gap-2 text-small font-semibold text-white/85">
+            {['Dashboard', 'Drawings', 'Workspace and e-sign', 'AI Site Diary', 'Cloud Docs', 'Tasks and Photos'].map((t) => (
+              <li class="bg-ink-2 px-3 py-2">{t}</li>
+            ))}
+          </ul>
+        </div>
+      </li>
+      {
+        features.map((f) => (
+          <li class="cx-step gutter py-10">
+            <figure class="cx-shot bg-ink-2 p-2 lg:p-3">
+              <Image
+                src={f.phone}
+                alt={f.alt}
+                widths={[480, 720, 960]}
+                sizes="100vw"
+                quality={80}
+                format="webp"
+                loading="lazy"
+                class="block h-auto w-full lg:hidden"
+              />
+              <Image
+                src={f.image}
+                alt={f.alt}
+                widths={[960, 1440, 1920]}
+                sizes="58vw"
+                quality={80}
+                format="webp"
+                loading="lazy"
+                class="hidden h-auto w-full lg:block"
+              />
+            </figure>
+            <div class="cx-text mt-8 lg:mt-0">
+              <p class="text-small font-semibold text-bina-blue">{f.eyebrow}</p>
+              <h3 class="mt-3 text-title font-semibold">{f.title}</h3>
+              <p class="mt-5 text-white/75">{f.text}</p>
+              {f.points && (
+                <ul class="mt-6 space-y-2 text-small text-white/80">
+                  {f.points.map((p) => (
+                    <li class="flex gap-3">
+                      <span class="mt-2 size-1.5 shrink-0 bg-bina-blue" aria-hidden="true" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {f.verify && (
+                <div class="mt-6 bg-ink-2 p-5 text-small">
+                  <p class="font-semibold">Verify Document</p>
+                  <p class="mt-2 text-white/75">
+                    Anyone can check that a signed document is authentic, without an account. Paste the{' '}
+                    <span class="font-semibold text-white">BC-</span> code printed on the signed PDF and Bina
+                    looks it up in the signed log.
+                  </p>
+                </div>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <ul class="gutter mt-16 grid gap-px lg:mt-24 lg:grid-cols-3">
+    {
+      more.map((m) => (
+        <li class="bg-ink-2 p-6 sm:p-8">
+          <h3 class="text-lead font-semibold">{m.title}</h3>
+          <p class="mt-3 text-white/75">{m.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  /* ---- Pinned stage (#cx.is-pinned, set by the script) ---------------------- */
+  .is-pinned .cx-stage {
+    display: block;
+  }
+  /* Pulled up under the last screen of the Design story (see the note above). */
+  #construction:has(.is-pinned) {
+    margin-top: -100svh;
+    padding-top: 0;
+  }
+  .cx-hero-title {
+    font-size: clamp(2.75rem, min(8vw, 12svh), 7rem);
+  }
+  /* The steps pull up under the stage (not a negative margin on the stage, which
+     would keep it stuck a full screen past the end of #cx). */
+  .is-pinned .cx-stage + ol {
+    margin-top: -100svh;
+  }
+  /* Each step is now only scroll room: one screen per feature. */
+  .is-pinned .cx-step {
+    height: 100svh;
+    padding: 0;
+  }
+  /* The chapter hero holds a little longer than a feature. */
+  .is-pinned .cx-step:first-child {
+    height: 150svh;
+  }
+  /* Copy and screens stack in one grid cell, so each column is as big as its
+     largest item and nothing jumps when they swap. As in Story.astro: passed
+     items wait above, coming ones below, so a swap follows the scroll. */
+  .cx-hero-slot > *,
+  .cx-copy > *,
+  .cx-shots > * {
+    grid-area: 1 / 1;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(32px);
+    transition:
+      opacity 0.22s ease,
+      transform 0.45s var(--ease-out-expo);
+  }
+  .cx-hero-slot > [data-pos='before'],
+  .cx-copy > [data-pos='before'],
+  .cx-shots > [data-pos='before'] {
+    transform: translateY(-32px);
+  }
+  .cx-hero-slot > [data-active],
+  .cx-copy > [data-active],
+  .cx-shots > [data-active] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 0.12s;
+  }
+  .cx-shots > * {
+    align-self: center;
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { gsap } from 'gsap';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const root = document.getElementById('cx');
+  if (root) {
+    // Step 0 is the chapter hero; steps 1.. are the features, each a copy and a screen.
+    const steps = [...root.querySelectorAll<HTMLElement>('.cx-step')];
+    const hero = steps[0].querySelector<HTMLElement>('.cx-hero')!;
+    const items: { el: HTMLElement; step: number }[] = [{ el: hero, step: 0 }];
+    steps.slice(1).forEach((s, k) => {
+      items.push({ el: s.querySelector<HTMLElement>('.cx-text')!, step: k + 1 });
+      items.push({ el: s.querySelector<HTMLElement>('.cx-shot')!, step: k + 1 });
+    });
+    root.querySelector('.cx-hero-slot')!.append(hero);
+    root.querySelector('.cx-copy')!.append(...items.filter((it) => it.el.matches('.cx-text')).map((it) => it.el));
+    root.querySelector('.cx-shots')!.append(...items.filter((it) => it.el.matches('.cx-shot')).map((it) => it.el));
+    root.classList.add('is-pinned');
+
+    let active = -2;
+    const show = (i: number) => {
+      if (i === active) return;
+      active = i;
+      for (const { el, step } of items) {
+        el.toggleAttribute('data-active', step === i);
+        if (step === i) el.removeAttribute('data-pos');
+        else el.dataset.pos = step < i ? 'before' : 'after';
+      }
+    };
+    // Nothing shows until the stage is pinned (the story's last copy is still up
+    // until then); after that, as in Story.astro, the last step whose top has
+    // passed 55% of the screen.
+    const pick = () => {
+      if (root.getBoundingClientRect().top > 1) return show(-1);
+      const line = window.innerHeight * 0.55;
+      let i = 0;
+      steps.forEach((s, k) => {
+        if (s.getBoundingClientRect().top <= line) i = k;
+      });
+      show(i);
+    };
+    pick();
+    ScrollTrigger.create({ trigger: root, start: 'top bottom', end: 'bottom top', onUpdate: pick, onRefresh: pick });
+    // The screens load lazily; once they arrive the page grows, so re-measure.
+    root.querySelectorAll('img').forEach((img) => img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true }));
+  }
+</script>

@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+/* Design tokens, taken from the product app (bina-web). */
+@theme {
+  --color-primary: #058dd8;
+  --color-primary-hover: #29aae6;
+  --color-bina-blue: #1ea8e0;
+  --color-dark-blue: #1d6586;
+  --color-polo-blue: #90b5cb;
+  --color-ink: #001529;
+  --color-gray-100: #1c1c1c;
+  --color-gray-90: #585757;
+  --color-gray-70: #969696;
+  --color-success: #5bba5f;
+  --color-danger: #ff2020;
+
+  /* Tone steps of the ink, for surfaces on the dark ground (no lines, no shadows). */
+  --color-ink-2: #04223d;
+  --color-ink-3: #0a2e4e;
+  --color-paper: #f3f7fa;
+
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Five sizes, no more: display, title, lead, body, small. */
+  --text-display: clamp(2.75rem, 9vw, 8rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.045em;
+  --text-title: clamp(2rem, 5vw, 4rem);
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.035em;
+  --text-lead: clamp(1.125rem, 1.6vw, 1.375rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --gutter: clamp(16px, 4vw, 32px); /* one pair of tight margins, used everywhere */
+  --header-h: 64px;
+  --section-gap: clamp(64px, 12vw, 200px);
+  color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  font-feature-settings: 'cv11', 'ss01';
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-bina-blue);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .gutter {
+    padding-inline: var(--gutter);
+  }
+
+  /* Flat, square-cornered button; decided once for the whole site. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 1.25rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s var(--ease-out-expo);
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-primary-hover);
+  }
+  .btn-quiet {
+    background: var(--color-ink-3);
+    color: #fff;
+  }
+  .btn-quiet:hover {
+    background: var(--color-dark-blue);
+  }
+
+  /* Long-form text (legal pages): set on paper, full ink, 45-75 characters. */
+  .prose-legal {
+    max-width: 44rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+  }
+  .prose-legal > * + *,
+  .prose-legal div > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-legal > div + div {
+    margin-top: 3rem;
+  }
+  .prose-legal h3:first-child {
+    margin-top: 0;
+  }
+  .prose-legal h2,
+  .prose-legal h3 {
+    margin-top: 2.5em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .prose-legal h2 {
+    font-size: 1.75rem;
+  }
+  .prose-legal h3 {
+    font-size: 1.375rem;
+  }
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.4em;
+  }
+  .prose-legal li + li {
+    margin-top: 0.4em;
+  }
+  .prose-legal a {
+    color: var(--color-dark-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+  .prose-legal a:hover {
+    color: var(--color-primary);
+  }
+  .prose-legal hr {
+    border: 0;
+    margin: 3rem 0 0;
+  }
+  .prose-legal .table-wrap {
+    overflow-x: auto;
+  }
+  .prose-legal table {
+    width: 100%;
+    min-width: 32rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    border: 1px solid #c9d6e0; /* real table: lines allowed */
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-legal th {
+    background: var(--color-paper);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import bina06 from '../assets/about/Bina_06.webp';
+import bina02 from '../assets/about/Bina_02.jpg';
+import bina03 from '../assets/about/Bina_03.jpg';
+import bina05 from '../assets/about/Bina_05.webp';
+
+const benefits = [
+  {
+    title: 'Efficient',
+    text: 'Our cutting-edge technolgy provides the best features for construction',
+  },
+  { title: 'Pioneers', text: 'First digital construction company located in Malaysia' },
+  {
+    title: 'Team of Professionals',
+    text: 'We have a team of developers ready to assist in your daily task',
+  },
+];
+---
+
+<Base
+  title="About Us | Bina Cloudtech"
+  description="Bina - Integrated Construction Management System"
+>
+  <section class="bg-ink pb-20 pt-32 md:pb-28 md:pt-44">
+    <div class="gutter grid items-end gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <h1 class="text-display font-bold text-balance">About Bina Cloud</h1>
+        <p class="mt-8 max-w-xl text-lead text-white">
+          BINA is a Cloud based Construction Project Management Software develop proudly by Malaysian
+          incorporated company Bina Cloudtech Sdn Bhd. We offer comprehensive solution to the industry
+          player &amp; are on a mission to become the platform needed for construction industry to hope
+          on to the digital transformation journey &amp; stay competitive in the current technological
+          revolution.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 lg:gap-4">
+        <div class="space-y-3 pt-12 lg:space-y-4 lg:pt-20">
+          <Image src={bina06} alt="Architect reviewing a blueprint of a green building online" widths={[400, 800]} sizes="(min-width: 1024px) 25vw, 45vw" class="aspect-[4/5] w-full object-cover" />
+          <Image src={bina02} alt="Civil engineer and site manager reviewing plans on a tablet" widths={[400, 550]} sizes="(min-width: 1024px) 25vw, 45vw" class="aspect-[4/3] w-full object-cover" />
+        </div>
+        <div class="space-y-3 lg:space-y-4">
+          <Image src={bina03} alt="Programmer working at a desktop computer" widths={[400, 489]} sizes="(min-width: 1024px) 25vw, 45vw" class="aspect-[4/3] w-full object-cover" />
+          <Image src={bina05} alt="Construction team on site" widths={[400, 800]} sizes="(min-width: 1024px) 25vw, 45vw" class="aspect-[4/5] w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink-2 py-[var(--section-gap)]" id="benefits">
+    <div class="gutter grid gap-14 md:grid-cols-3 md:gap-10">
+      {
+        benefits.map((b) => (
+          <div>
+            <h2 class="text-title font-bold text-balance">{b.title}</h2>
+            <p class="mt-5 max-w-xs text-lead text-white">{b.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-primary py-20 text-white md:py-32">
+    <div class="gutter">
+      <h2 class="max-w-[18ch] text-lead font-medium">Want to work with us? Let’s talk</h2>
+      <a href="mailto:info@bina.cloud" class="mt-4 inline-block break-words text-title font-bold hover:underline">info@bina.cloud</a>
+      <div class="mt-10">
+        <a href="/contacts" class="btn bg-ink text-white hover:bg-ink-3">Contact us</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,50 @@
+---
+// Click-to-load embed: no YouTube request (script, iframe or cookie) until the user presses play.
+// The poster is a plain image from i.ytimg.com, loaded lazily.
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+
+<div class="yt relative aspect-video w-full bg-ink-2" data-yt={id} data-title={title}>
+  <img
+    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+    alt=""
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <button
+    type="button"
+    aria-label={`Play video: ${title}`}
+    class="yt-play group absolute inset-0 flex items-end justify-start bg-ink/30 p-4 transition-colors hover:bg-ink/10 sm:p-6"
+  >
+    <span class="btn btn-primary gap-3 group-hover:bg-primary-hover">
+      <svg viewBox="0 0 12 14" class="size-3" fill="currentColor" aria-hidden="true"><path d="M0 0l12 7-12 7z"></path></svg>
+      Play
+    </span>
+  </button>
+</div>
+
+<script>
+  // Swap the poster for the iframe on the first click.
+  document.querySelectorAll<HTMLElement>('.yt').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('.yt-play');
+    btn?.addEventListener(
+      'click',
+      () => {
+        const frame = document.createElement('iframe');
+        frame.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0`;
+        frame.title = box.dataset.title ?? 'Video';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        frame.className = 'absolute inset-0 h-full w-full border-0';
+        box.replaceChildren(frame);
+        frame.focus();
+      },
+      { once: true },
+    );
+  });
+</script>

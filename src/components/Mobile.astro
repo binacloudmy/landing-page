@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+// A render of the hero model at phone proportions; no real app screenshot of the viewer exists yet.
+import phone from '../assets/product/mobile-model.webp';
+
+const APP_STORE_URL = 'https://apps.apple.com/us/app/bina/id6444920215';
+const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=cloud.bina.android';
+
+const tools = ['Measure', 'Section', 'Explode', 'Layers'];
+---
+
+<section id="mobile" class="gutter py-[var(--section-gap)]">
+  <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-24">
+    <div class="max-w-2xl">
+      <p class="text-small font-semibold text-bina-blue">Mobile</p>
+      <h2 class="mt-3 text-title font-semibold">The site diary works offline.</h2>
+      <p class="mt-6 text-lead text-white/75">
+        The Bina app for iOS and Android captures site diary entries where there is no signal, then syncs
+        them when the phone is back online.
+      </p>
+      <p class="mt-6 text-white/75">
+        The same app opens the 3D models on the phone, with touch tools for the checks you make walking the
+        site:
+      </p>
+      <ul class="mt-5 flex flex-wrap gap-2 text-small font-semibold">
+        {tools.map((t) => <li class="bg-ink-3 px-3 py-2">{t}</li>)}
+      </ul>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={APP_STORE_URL} class="btn btn-primary" rel="noopener">Download on the App Store</a>
+        <a href={GOOGLE_PLAY_URL} class="btn btn-quiet" rel="noopener">Get it on Google Play</a>
+      </div>
+    </div>
+
+    <div class="bg-ink-2 px-6 py-6 sm:px-10 sm:py-10">
+      <div class="mx-auto max-w-[22rem] bg-ink" style="aspect-ratio: 430 / 360">
+        <Image
+          src={phone}
+          alt="A BIM model of a house shown at phone size, as the mobile viewer opens it."
+          widths={[280, 430]}
+          sizes="280px"
+          quality={78}
+          format="webp"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,121 @@
+---
+import { APP_URL, DEMO_URL, MOBILE_LOGIN_URL, NAV } from '../config';
+---
+
+<!--
+  Transparent over the dark full-bleed hero; becomes solid ink once the page
+  is scrolled (data-solid, set by the script below). Flat: no blur, no shadow.
+-->
+<header
+  id="site-header"
+  class="group fixed inset-x-0 top-0 z-50 transition-colors duration-300 data-[solid]:bg-ink data-[open]:bg-ink"
+>
+  <div class="gutter flex h-16 items-center justify-between gap-6">
+    <a href="/" class="flex shrink-0 items-center gap-2" aria-label="Bina Cloud, home">
+      <img src="/assets/bina-mark.svg" alt="" class="h-7 w-auto" width="25" height="28" />
+      <img src="/assets/bina-word-white.svg" alt="" class="h-6 w-auto" width="54" height="24" />
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="text-small font-medium text-white/85 transition-colors hover:text-white">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={APP_URL}
+        class="hidden text-small font-medium text-white/85 transition-colors hover:text-white lg:inline-block lg:px-3"
+      >
+        Login
+      </a>
+      <a href={DEMO_URL} class="btn btn-primary hidden sm:inline-flex">Book a demo</a>
+      <button
+        id="menu-button"
+        type="button"
+        class="-mr-2 inline-flex h-11 w-11 items-center justify-center lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path class="group-data-[open]:hidden" d="M3 8h18M3 16h18"></path>
+          <path class="hidden group-data-[open]:block" d="M5 5l14 14M19 5L5 19"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink lg:hidden" hidden>
+    <nav class="gutter flex min-h-full flex-col gap-1 pb-10 pt-6" aria-label="Mobile">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="py-3 text-title font-semibold tracking-tight">
+            {item.label}
+          </a>
+        ))
+      }
+      <div class="mt-8 flex flex-col gap-3">
+        <a href={DEMO_URL} class="btn btn-primary w-full">Book a demo</a>
+        <!-- Mobile login goes through the app deep-link page. -->
+        <a href={MOBILE_LOGIN_URL} class="btn btn-quiet w-full">Login</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header') as HTMLElement;
+  const button = document.getElementById('menu-button') as HTMLButtonElement;
+  const menu = document.getElementById('mobile-menu') as HTMLElement;
+  const desktop = window.matchMedia('(min-width: 1024px)');
+
+  const syncSolid = () => {
+    header.toggleAttribute('data-solid', window.scrollY > 24);
+  };
+  syncSolid();
+  window.addEventListener('scroll', syncSolid, { passive: true });
+
+  const focusables = () =>
+    [button, ...menu.querySelectorAll<HTMLElement>('a[href]')];
+
+  function setOpen(open: boolean, returnFocus = true) {
+    menu.hidden = !open;
+    header.toggleAttribute('data-open', open);
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) menu.querySelector<HTMLElement>('a[href]')?.focus();
+    else if (returnFocus) button.focus();
+  }
+
+  button.addEventListener('click', () => setOpen(menu.hidden));
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setOpen(false, false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (menu.hidden) return;
+    if (e.key === 'Escape') {
+      setOpen(false);
+    } else if (e.key === 'Tab') {
+      // Keep Tab inside the open menu (button + links).
+      const items = focusables();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  desktop.addEventListener('change', (e) => {
+    if (e.matches && !menu.hidden) setOpen(false, false);
+  });
+</script>
