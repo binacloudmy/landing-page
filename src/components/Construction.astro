@@ -1,60 +1,135 @@
 ---
 import { Image } from 'astro:assets';
+import diary from '../assets/product/live-diary.webp';
+import diaryRecords from '../assets/product/live-diary-records.webp';
 import dashboard from '../assets/product/live-dashboard.webp';
-import dashboardPhone from '../assets/product/live-dashboard-phone.webp';
 import drawing from '../assets/product/live-drawing.webp';
-import drawingPhone from '../assets/product/live-drawing-phone.webp';
 import workspace from '../assets/product/live-workspace.webp';
-import workspacePhone from '../assets/product/live-workspace-phone.webp';
+import docs from '../assets/product/live-docs.webp';
+import tasks from '../assets/product/live-tasks.webp';
+import models from '../assets/product/live-models.webp';
 
-// Screens captured from the live app (Internal - BINA CLOUDTECH project), with
-// the account avatar hidden and the drawing's signature and title block
-// blurred. Like the Design story (Story.astro), the copy and the screen stay
-// fixed on one pinned stage and swap when each step crosses 55% of the screen;
-// phones show a crop of the part of each screen that matters.
-const features = [
+// Screens captured from the app: the diary from the staging demo (Sample
+// Project 2, September 2026), the rest from the live app (Internal - BINA
+// CLOUDTECH), with the account avatar hidden and the drawing's signature and
+// title block blurred. Like the Design story (Story.astro), the copy and the
+// screen stay fixed on one pinned stage and swap when each step crosses 55% of
+// the screen. Within a step, the scroll then walks the screen's frames: each
+// frame shows one of the feature's screens, whole or zoomed in on a region.
+//
+// A region is [x, y, size] as fractions of the screen: a square in those terms,
+// so the zoomed view keeps the screen's own shape. `phone` replaces `region` on
+// narrow screens, where a whole desktop screen is too small to read.
+type Region = [number, number, number];
+interface Frame { screen: number; region?: Region; phone?: Region; caption: string }
+interface Feature {
+  eyebrow: string;
+  title: string;
+  text: string;
+  points?: string[];
+  verify?: boolean;
+  screens: { image: ImageMetadata; alt: string }[];
+  frames: Frame[];
+}
+
+const features: Feature[] = [
   {
-    eyebrow: 'Construction · Dashboard',
-    title: 'The whole project on one screen.',
-    image: dashboard,
-    phone: dashboardPhone,
-    alt: 'The project dashboard: physical progress as an S-curve of schedule against actual from 2021 to 2025, with the site weather, a calendar and the current site diary beside it.',
-    text: 'See where the project stands the moment you open it: progress against schedule, the weather on site, what is coming up, and whether today\'s diary is in.',
-    points: ['Physical and financial progress curves', 'Schedule against actual', 'Site weather and calendar'],
+    eyebrow: 'Construction · AI Site Diary',
+    title: 'Every site day, counted.',
+    text: 'Fill in the JKR daily site diary from the office or on site. The overview adds up what the diaries already say: days logged, signatures waiting, hours lost to rain, deliveries turned back. Nothing is guessed.',
+    points: [
+      'Signed by the contractor, the consultant and the JKR site supervisor, then locked',
+      'A register of every site day, by status',
+      'Export to CSV',
+    ],
+    screens: [
+      {
+        image: diary,
+        alt: 'The site diary overview for September: 15 of 30 working days logged, 8 signatures awaited, 6.3 hours of work suspended and 1 of 12 deliveries rejected, above a calendar of each day\'s diary status and a tracker of who still has to sign.',
+      },
+      {
+        image: diaryRecords,
+        alt: 'Further down the overview: workers on site per day with the hours suspended and rain days, a delay log of each stoppage with its cause and time, and the working, idle and down hours of each plant.',
+      },
+    ],
+    frames: [
+      { screen: 0, phone: [0.15, 0.1, 0.55], caption: 'The month at a glance' },
+      { screen: 0, region: [0.155, 0.15, 0.42], phone: [0.155, 0.16, 0.42], caption: 'Days logged and signatures waiting, added up from the diaries' },
+      { screen: 0, region: [0.45, 0.45, 0.55], phone: [0.64, 0.48, 0.36], caption: 'Who still has to sign, and for how long' },
+      { screen: 1, phone: [0.16, 0.08, 0.5], caption: 'Workers, delays and plant hours, day by day' },
+    ],
   },
   {
     eyebrow: 'Construction · Drawings',
     title: 'Mark up the sheet. Pin it to a task.',
-    image: drawing,
-    phone: drawingPhone,
-    alt: 'A road junction drawing open in the Bina Cloud sheet viewer, with the markup toolbar along the bottom and the Tasks, Layers and Versions panels on the right.',
-    text: 'Upload drawings and open any sheet. Mark it up, measure it, and pin a markup to a task.',
-    points: ['Markups and measuring on the sheet', 'Versions of every drawing', 'Layers you can switch on and off'],
+    text: 'Upload drawings and open any sheet. Mark it up, measure it, and pin a markup to a task. Add a revision and compare it with the last; markups stay with their version.',
+    points: ['Markups and measuring on the sheet', 'Revisions you can compare', 'Layers you can switch on and off'],
+    screens: [
+      {
+        image: drawing,
+        alt: 'A road junction drawing open in the Bina Cloud sheet viewer, with the markup toolbar along the bottom and the Tasks, Layers and Versions panels on the right.',
+      },
+    ],
+    frames: [
+      { screen: 0, phone: [0.08, 0.15, 0.6], caption: 'Any sheet, in the browser' },
+      { screen: 0, region: [0.12, 0.45, 0.55], phone: [0.15, 0.62, 0.38], caption: 'Pin, draw, measure and comment' },
+    ],
   },
   {
     eyebrow: 'Construction · Workspace',
     title: 'Fill it, sign it, track it.',
-    image: workspace,
-    phone: workspacePhone,
-    alt: 'The Workspace overview: document groups such as Site Diary, Non Conformance Report, Request For Information and Claim, with how many are submitted, pending, in review, approved or rejected.',
     text: 'Start from a template, fill it in and sign it. Request approval, review it, and see where every document stands by its status.',
     verify: true,
+    screens: [
+      {
+        image: workspace,
+        alt: 'The Workspace overview: document groups such as Site Diary, Non Conformance Report, Request For Information and Claim, with how many are submitted, pending, in review, approved or rejected.',
+      },
+    ],
+    frames: [
+      { screen: 0, phone: [0.2, 0.12, 0.6], caption: 'Every form group in one table' },
+      { screen: 0, region: [0.45, 0.15, 0.55], phone: [0.2, 0.25, 0.5], caption: 'From submitted to approved, by status' },
+    ],
+  },
+  {
+    eyebrow: 'Construction · Dashboard',
+    title: 'The whole project on one screen.',
+    text: 'See where the project stands the moment you open it: progress against schedule, the weather on site, what is coming up, and whether today\'s diary is in.',
+    points: ['Physical and financial progress curves', 'Schedule against actual', 'Site weather and calendar'],
+    screens: [
+      {
+        image: dashboard,
+        alt: 'The project dashboard: physical progress as an S-curve of schedule against actual from 2021 to 2025, with the site weather, a calendar and the current site diary beside it.',
+      },
+    ],
+    frames: [
+      { screen: 0, phone: [0.2, 0.28, 0.55], caption: 'Progress, weather and today\'s diary' },
+      { screen: 0, region: [0.2, 0.45, 0.55], phone: [0.22, 0.48, 0.5], caption: 'Schedule against actual, from day one' },
+    ],
   },
 ];
 
-// The rest of the construction side, without a screen of its own.
+// The rest of the construction side: a card each, with a crop of its screen
+// (staging, Sample Project 2; test items and uploader names hidden) that
+// drifts slowly across its window while the cards are on screen.
 const more = [
   {
-    title: 'AI Site Diary',
-    text: 'Record each working day, from the office or from mobile, then submit it to the people who sign it. They sign or send it back, and the signed diary exports to PDF.',
-  },
-  {
     title: 'Cloud Docs and Correspondence',
-    text: 'Project files in folders, with versions, sharing and preview. Project letters are tracked too, with attachments and a status on each.',
+    text: 'Project files in shared folders, with versions and preview. Each project has its own email address: send or forward a letter to it and it is filed in the project.',
+    image: docs,
+    alt: 'Cloud Docs: the Project Document shared drive with folders for contract documents, inspection and test plans, method statements and minutes of meeting.',
   },
   {
     title: 'Tasks and Photos',
-    text: 'Group tasks, assign them and move them through their statuses. Site photos and videos sit in folders beside them.',
+    text: 'Tasks in groups and sub-groups, each with an owner and a status. Site photos sit in folders beside them.',
+    image: tasks,
+    alt: 'The Tasks overview: task groups such as Drainage Work, Environmental Work, Quality Work and Testing Material, with how many are open, in progress, on hold or closed.',
+  },
+  {
+    title: 'BIM Models on site',
+    text: 'The site team opens the same models in the same 3D viewer, kept in project folders.',
+    image: models,
+    alt: 'BIM Models: a folder of RVT, DWG and DWF files, each marked ready to open in the viewer.',
   },
 ];
 ---
@@ -87,7 +162,7 @@ const more = [
             nothing has to be re-sent or re-typed.
           </p>
           <ul class="mt-10 flex flex-wrap gap-2 text-small font-semibold text-white/85">
-            {['Dashboard', 'Drawings', 'Workspace and e-sign', 'AI Site Diary', 'Cloud Docs', 'Tasks and Photos'].map((t) => (
+            {['AI Site Diary', 'Drawings', 'Workspace and e-sign', 'Dashboard', 'Cloud Docs', 'Tasks and Photos'].map((t) => (
               <li class="bg-ink-2 px-3 py-2">{t}</li>
             ))}
           </ul>
@@ -95,28 +170,36 @@ const more = [
       </li>
       {
         features.map((f) => (
-          <li class="cx-step gutter py-10">
-            <figure class="cx-shot bg-ink-2 p-2 lg:p-3">
-              <Image
-                src={f.phone}
-                alt={f.alt}
-                widths={[480, 720, 960]}
-                sizes="100vw"
-                quality={80}
-                format="webp"
-                loading="lazy"
-                class="block h-auto w-full lg:hidden"
-              />
-              <Image
-                src={f.image}
-                alt={f.alt}
-                widths={[960, 1440, 1920]}
-                sizes="58vw"
-                quality={80}
-                format="webp"
-                loading="lazy"
-                class="hidden h-auto w-full lg:block"
-              />
+          <li class="cx-step gutter py-10" style={`--frames: ${f.frames.length}`}>
+            <figure class="cx-shot" data-frames={JSON.stringify(f.frames)}>
+              <div class="bg-ink-2 p-1.5 lg:p-2">
+                <div class="flex items-center gap-1.5 px-1.5 pb-2 pt-1" aria-hidden="true">
+                  <span class="size-2 rounded-full bg-white/20" />
+                  <span class="size-2 rounded-full bg-white/20" />
+                  <span class="size-2 rounded-full bg-white/20" />
+                  <span class="ml-3 text-[11px] text-white/40">app.bina.cloud</span>
+                </div>
+                <div class="relative overflow-hidden">
+                  {
+                    f.screens.map((s, k) => (
+                      <Image
+                        src={s.image}
+                        alt={s.alt}
+                        widths={[960, 1440, 1920, 2880]}
+                        sizes="(min-width: 1024px) 90vw, 200vw"
+                        quality={82}
+                        format="webp"
+                        loading="lazy"
+                        data-on={k === 0 ? '' : undefined}
+                        class:list={['cx-screen block h-auto w-full', k > 0 && 'absolute inset-x-0 top-0']}
+                      />
+                    ))
+                  }
+                </div>
+              </div>
+              <figcaption class="cx-caps mt-3 grid text-small text-white/60">
+                {f.frames.map((fr, k) => <span data-active={k === 0 ? '' : undefined}>{fr.caption}</span>)}
+              </figcaption>
             </figure>
             <div class="cx-text mt-8 lg:mt-0">
               <p class="text-small font-semibold text-bina-blue">{f.eyebrow}</p>
@@ -136,9 +219,9 @@ const more = [
                 <div class="mt-6 bg-ink-2 p-5 text-small">
                   <p class="font-semibold">Verify Document</p>
                   <p class="mt-2 text-white/75">
-                    Anyone can check that a signed document is authentic, without an account. Paste the{' '}
-                    <span class="font-semibold text-white">BC-</span> code printed on the signed PDF and Bina
-                    looks it up in the signed log.
+                    Anyone can check that a signed document is authentic, without an account. Drop the signed file
+                    in, or enter its document number or the <span class="font-semibold text-white">BC-</span> code
+                    printed on it, and Bina checks it against the signed log.
                   </p>
                 </div>
               )}
@@ -149,12 +232,31 @@ const more = [
     </ol>
   </div>
 
-  <ul class="gutter mt-16 grid gap-px lg:mt-24 lg:grid-cols-3">
+  <ul class="cx-more gutter mt-16 grid gap-4 lg:mt-24 lg:grid-cols-3">
     {
-      more.map((m) => (
-        <li class="bg-ink-2 p-6 sm:p-8">
-          <h3 class="text-lead font-semibold">{m.title}</h3>
-          <p class="mt-3 text-white/75">{m.text}</p>
+      more.map((m, k) => (
+        <li class="bg-ink-2 p-1.5 lg:p-2" style={`--k: ${k}`}>
+          <div class="flex items-center gap-1.5 px-1.5 pb-2 pt-1" aria-hidden="true">
+            <span class="size-2 rounded-full bg-white/20" />
+            <span class="size-2 rounded-full bg-white/20" />
+            <span class="size-2 rounded-full bg-white/20" />
+          </div>
+          <div class="aspect-[16/10] overflow-hidden bg-white">
+            <Image
+              src={m.image}
+              alt={m.alt}
+              widths={[960, 1440, 1970]}
+              sizes="(min-width: 1024px) 60vw, 150vw"
+              quality={82}
+              format="webp"
+              loading="lazy"
+              class="cx-drift size-full object-cover"
+            />
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="text-lead font-semibold">{m.title}</h3>
+            <p class="mt-3 text-white/75">{m.text}</p>
+          </div>
         </li>
       ))
     }
@@ -179,10 +281,61 @@ const more = [
   .is-pinned .cx-stage + ol {
     margin-top: -100svh;
   }
-  /* Each step is now only scroll room: one screen per feature. */
+  /* Each step is now only scroll room: three quarters of a screen per frame,
+     and at least a screen. */
   .is-pinned .cx-step {
-    height: 100svh;
+    height: max(100svh, calc(var(--frames, 1) * 75svh));
     padding: 0;
+  }
+  /* A frame's zoom is a transform on its screen (see setFrame below). */
+  .cx-screen {
+    transform-origin: 0 0;
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      opacity 0.35s ease;
+  }
+  .cx-screen:not([data-on]) {
+    opacity: 0;
+  }
+  .cx-caps > * {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .cx-caps > [data-active] {
+    opacity: 1;
+  }
+
+  /* ---- The three cards: they rise in one after another, then each crop drifts
+     across its window (object-position runs corner to corner; a wide crop pans
+     sideways, a tall one up and down). The script adds .is-in on first sight
+     and .is-live while the cards are on screen. -------------------------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .cx-more.is-armed > li {
+      opacity: 0;
+      transform: translateY(48px);
+      transition:
+        opacity 0.5s ease,
+        transform 0.9s var(--ease-out-expo);
+      transition-delay: calc(var(--k) * 0.12s);
+    }
+    .cx-more.is-in > li {
+      opacity: 1;
+      transform: none;
+    }
+    .cx-drift {
+      object-position: 0% 0%;
+      animation: cx-drift 14s ease-in-out infinite alternate paused;
+      animation-delay: calc(var(--k, 0) * -3s);
+    }
+    .cx-more.is-live .cx-drift {
+      animation-play-state: running;
+    }
+  }
+  @keyframes cx-drift {
+    to {
+      object-position: 100% 100%;
+    }
   }
   /* The chapter hero holds a little longer than a feature. */
   .is-pinned .cx-step:first-child {
@@ -252,20 +405,70 @@ const more = [
         else el.dataset.pos = step < i ? 'before' : 'after';
       }
     };
+
+    // ---- frames within a step: which screen shows, zoomed to which region ----
+    type Region = [number, number, number];
+    interface Frame { screen: number; region?: Region; phone?: Region }
+    const wide = window.matchMedia('(min-width: 1024px)');
+    const shots = steps.slice(1).map((_, k) => {
+      const fig = items.find((it) => it.step === k + 1 && it.el.matches('.cx-shot'))!.el;
+      return {
+        frames: JSON.parse(fig.dataset.frames!) as Frame[],
+        screens: [...fig.querySelectorAll<HTMLElement>('.cx-screen')],
+        caps: [...fig.querySelectorAll<HTMLElement>('.cx-caps > *')],
+        at: -1,
+      };
+    });
+    const setFrame = (shot: (typeof shots)[number], f: number, force = false) => {
+      if (f === shot.at && !force) return;
+      shot.at = f;
+      const fr = shot.frames[f];
+      const r = (!wide.matches && fr.phone) || fr.region;
+      shot.screens.forEach((el, k) => {
+        el.toggleAttribute('data-on', k === fr.screen);
+        // Scale the region up to fill the view; its top-left corner lands on the view's.
+        if (k === fr.screen) el.style.transform = r ? `scale(${1 / r[2]}) translate(${-r[0] * 100}%, ${-r[1] * 100}%)` : '';
+      });
+      shot.caps.forEach((el, k) => el.toggleAttribute('data-active', k === f));
+    };
+    shots.forEach((s) => setFrame(s, 0));
+    wide.addEventListener('change', () => shots.forEach((s) => setFrame(s, Math.max(0, s.at), true)));
+
     // Nothing shows until the stage is pinned (the story's last copy is still up
     // until then); after that, as in Story.astro, the last step whose top has
-    // passed 55% of the screen.
+    // passed 55% of the screen. Within that step, each further three quarters
+    // of a screen (the step's height per frame, see the CSS) moves on a frame.
     const pick = () => {
       if (root.getBoundingClientRect().top > 1) return show(-1);
-      const line = window.innerHeight * 0.55;
+      const vh = window.innerHeight;
+      const line = vh * 0.55;
       let i = 0;
       steps.forEach((s, k) => {
         if (s.getBoundingClientRect().top <= line) i = k;
       });
       show(i);
+      if (i > 0) {
+        const shot = shots[i - 1];
+        const into = line - steps[i].getBoundingClientRect().top;
+        setFrame(shot, Math.min(shot.frames.length - 1, Math.floor(into / (vh * 0.75))));
+      }
+      // Steps already passed rest on their last frame, coming ones on their first.
+      shots.forEach((s, k) => {
+        if (k + 1 < i) setFrame(s, s.frames.length - 1);
+        else if (k + 1 > i) setFrame(s, 0);
+      });
     };
     pick();
     ScrollTrigger.create({ trigger: root, start: 'top bottom', end: 'bottom top', onUpdate: pick, onRefresh: pick });
+    // The cards below the stage: hidden only once JavaScript can bring them back.
+    const more = document.querySelector<HTMLElement>('.cx-more');
+    if (more) {
+      more.classList.add('is-armed');
+      new IntersectionObserver(([e]) => {
+        more.classList.toggle('is-live', e.isIntersecting);
+        if (e.isIntersecting) more.classList.add('is-in');
+      }, { threshold: 0.2 }).observe(more);
+    }
     // The screens load lazily; once they arrive the page grows, so re-measure.
     root.querySelectorAll('img').forEach((img) => img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true }));
   }

@@ -83,35 +83,95 @@ export function webglAvailable(): boolean {
   }
 }
 
-function lowPower(): boolean {
+// Only genuinely weak hardware drops to a soft, aliased render. Screen width
+// and core count are no guide: phones render the model sharp, and iOS Safari
+// under-reports its cores. deviceMemory is Chromium-only (in GB buckets).
+function weakDevice(): boolean {
   const nav = navigator as Navigator & { deviceMemory?: number };
-  return (
-    window.matchMedia('(max-width: 767px)').matches ||
-    (nav.hardwareConcurrency ?? 8) <= 4 ||
-    (nav.deviceMemory ?? 8) <= 4
-  );
+  return (nav.deviceMemory ?? 8) <= 2;
+}
+
+// A tileable greyscale noise for the model's surface: R mixes four octaves
+// (blotches down to a fine grain) for colour and roughness, G only the two
+// broad ones for the bump, so the shading never sparkles. Seeded, so every
+// load looks the same.
+function grainTexture(): THREE.DataTexture {
+  const N = 256;
+  let seed = 7;
+  const rand = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const smooth = (t: number) => t * t * (3 - 2 * t);
+  const octave = (cells: number) => {
+    const g = Array.from({ length: cells * cells }, rand);
+    const at = (i: number, j: number) => g[(j % cells) * cells + (i % cells)];
+    const out = new Float32Array(N * N);
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const fx = (x / N) * cells, fy = (y / N) * cells;
+        const x0 = Math.floor(fx), y0 = Math.floor(fy);
+        const sx = smooth(fx - x0), sy = smooth(fy - y0);
+        const a = at(x0, y0), b = at(x0 + 1, y0), c = at(x0, y0 + 1), d = at(x0 + 1, y0 + 1);
+        out[y * N + x] = a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+      }
+    }
+    return out;
+  };
+  const [o4, o16, o64, o256] = [4, 16, 64, 256].map(octave);
+  const mix = (w: number[], ...os: Float32Array[]) => {
+    const out = os[0].map((_, i) => os.reduce((s, o, k) => s + o[i] * w[k], 0));
+    let lo = Infinity, hi = -Infinity;
+    for (const v of out) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
+    return out.map((v) => (v - lo) / (hi - lo));
+  };
+  const colour = mix([0.35, 0.3, 0.2, 0.15], o4, o16, o64, o256);
+  const bump = mix([0.5, 0.5], o4, o16);
+  const data = new Uint8Array(N * N * 4);
+  for (let i = 0; i < N * N; i++) {
+    data[i * 4] = colour[i] * 255;
+    data[i * 4 + 1] = bump[i] * 255;
+    data[i * 4 + 3] = 255;
+  }
+  const tex = new THREE.DataTexture(data, N, N);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.magFilter = THREE.LinearFilter;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
+  tex.generateMipmaps = true;
+  tex.needsUpdate = true;
+  return tex;
 }
 
 export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void> {
   const { canvas, story, modelUrl, labels } = opts;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const light = lowPower();
+  const weak = weakDevice();
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !light, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, light ? 1.25 : 2));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !weak, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, weak ? 1.25 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.localClippingEnabled = true;
+  renderer.shadowMap.enabled = !weak;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
   const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environment = envTex;
   pmrem.dispose();
+  // From the front left of the hero shot, so the shadow falls where it shows.
   const sun = new THREE.DirectionalLight('#ffffff', 1.6);
-  sun.position.set(8, 14, 6);
+  sun.position.set(-7, 15, 9);
+  sun.castShadow = !weak;
+  // Covers the building lifted apart in the federation beat as well.
+  Object.assign(sun.shadow.camera, { left: -14, right: 14, top: 14, bottom: -14, near: 1, far: 60 });
+  sun.shadow.camera.updateProjectionMatrix();
+  sun.shadow.mapSize.setScalar(window.innerWidth < 768 ? 1024 : 2048);
+  sun.shadow.bias = -0.0004;
+  sun.shadow.normalBias = 0.03;
+  sun.shadow.radius = 3;
   scene.add(sun, new THREE.HemisphereLight('#dbeeff', '#0b1a2a', 0.6));
+  const grainMap = grainTexture();
+  grainMap.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
 
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 400);
 
@@ -144,8 +204,18 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.02;
-  ground.renderOrder = -1;
-  scene.add(ground);
+  ground.renderOrder = -2;
+  // The building's shadow, laid over the disc.
+  const SHADOW = 0.4;
+  const shadowCatcher = new THREE.Mesh(
+    ground.geometry,
+    new THREE.ShadowMaterial({ opacity: SHADOW, depthWrite: false }),
+  );
+  shadowCatcher.rotation.x = -Math.PI / 2;
+  shadowCatcher.position.y = -0.015;
+  shadowCatcher.renderOrder = -1;
+  shadowCatcher.receiveShadow = true;
+  scene.add(ground, shadowCatcher);
 
   const baseY = Object.fromEntries(GROUPS.map((g) => [g, groups[g].position.y])) as Record<Group, number>;
 
@@ -154,6 +224,57 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
   interface Mat { m: THREE.MeshStandardMaterial; colour: THREE.Color; opacity: number; transparent: boolean; group: Group; clash?: 'a' | 'b' }
   const mats: Mat[] = [];
   const clashMeshes: THREE.Mesh[] = [];
+  const solidMeshes: THREE.Mesh[] = []; // opaque ones: they cast shadows and get edge lines
+  // The model has no UVs, so the grain is projected from three sides
+  // (triplanar) in each group's own frame: it stays put on the surface while
+  // the model turns and the groups lift apart. grainSpace takes a vertex there.
+  const grainSpace = Object.fromEntries(GROUPS.map((g) => [g, { value: new THREE.Matrix4() }])) as Record<Group, { value: THREE.Matrix4 }>;
+  const grainUniforms = {
+    grainMap: { value: grainMap },
+    grainScale: { value: scale / 2.5 }, // group units to texture tiles: one tile per 2.5 scene units
+  };
+  const addGrain = (m: THREE.MeshStandardMaterial, g: Group) => {
+    // Glass and other see-through materials stay clean.
+    const amount = m.transparent ? 0 : 0.4;
+    m.onBeforeCompile = (shader) => {
+      Object.assign(shader.uniforms, grainUniforms, { grainSpace: grainSpace[g], grainAmount: { value: amount } });
+      shader.vertexShader = shader.vertexShader
+        .replace('#include <common>', '#include <common>\nuniform mat4 grainSpace;\nvarying vec3 vGrainPos;\nvarying vec3 vGrainNormal;')
+        .replace('#include <begin_vertex>', `#include <begin_vertex>
+          mat4 grainM = grainSpace * modelMatrix;
+          vGrainPos = (grainM * vec4(transformed, 1.0)).xyz;
+          vGrainNormal = mat3(grainM) * objectNormal;`);
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', `#include <common>
+          uniform sampler2D grainMap;
+          uniform float grainScale;
+          uniform float grainAmount;
+          varying vec3 vGrainPos;
+          varying vec3 vGrainNormal;
+          // three's perturbNormalArb, which is only compiled in with a bump map.
+          vec3 grainBump(vec3 surfPos, vec3 surfNorm, vec2 dHdxy, float faceDir) {
+            vec3 sx = normalize(dFdx(surfPos));
+            vec3 sy = normalize(dFdy(surfPos));
+            vec3 r1 = cross(sy, surfNorm);
+            vec3 r2 = cross(surfNorm, sx);
+            float det = dot(sx, r1) * faceDir;
+            vec3 grad = sign(det) * (dHdxy.x * r1 + dHdxy.y * r2);
+            return normalize(abs(det) * surfNorm - grad);
+          }`)
+        .replace('#include <color_fragment>', `#include <color_fragment>
+          vec3 grainW = pow(abs(normalize(vGrainNormal)), vec3(4.0));
+          grainW /= grainW.x + grainW.y + grainW.z;
+          vec3 grainP = vGrainPos * grainScale;
+          vec4 grain = texture2D(grainMap, grainP.yz) * grainW.x
+            + texture2D(grainMap, grainP.xz) * grainW.y
+            + texture2D(grainMap, grainP.xy) * grainW.z;
+          diffuseColor.rgb *= 1.0 + (grain.r - 0.5) * grainAmount;`)
+        .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
+          roughnessFactor = clamp(roughnessFactor + (grain.r - 0.5) * grainAmount, 0.0, 1.0);`)
+        .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+          normal = grainBump(-vViewPosition, normal, vec2(dFdx(grain.g), dFdy(grain.g)) * grainAmount * 1.5, faceDirection);`);
+    };
+  };
   for (const g of GROUPS) {
     const cache = new Map<THREE.Material, THREE.MeshStandardMaterial>();
     groups[g].traverse((o) => {
@@ -166,10 +287,21 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
       if (!m) {
         m = src.clone();
         m.side = THREE.DoubleSide; // Revit shells are not always closed
+        // Faces sit a hair behind their edge lines, so the lines never flicker.
+        m.polygonOffset = true;
+        m.polygonOffsetFactor = 1;
+        m.polygonOffsetUnits = 1;
+        addGrain(m, g);
         mats.push({ m, colour: m.color.clone(), opacity: m.opacity, transparent: m.transparent, group: g, clash });
         if (!clash) cache.set(src, m);
       }
       mesh.material = m;
+      if (!src.transparent) {
+        mesh.castShadow = mesh.receiveShadow = true;
+        if (!clash) solidMeshes.push(mesh);
+      } else {
+        mesh.receiveShadow = true;
+      }
     });
   }
 
@@ -182,10 +314,33 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
   const ghostMat = new THREE.MeshBasicMaterial({ color: GHOST, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide, clippingPlanes: [ghostPlane] });
   {
     ghost = model.clone(true);
-    ghost.traverse((o) => { if ((o as THREE.Mesh).isMesh) (o as THREE.Mesh).material = ghostMat; });
+    ghost.traverse((o) => {
+      if (!(o as THREE.Mesh).isMesh) return;
+      (o as THREE.Mesh).material = ghostMat;
+      o.castShadow = o.receiveShadow = false;
+    });
     ghost.visible = false;
     root.add(ghost);
   }
+
+  // Crease lines on every solid mesh, like a drawn model. Built a few meshes
+  // per frame after the first render (after the ghost clone, which must not
+  // copy them), so the page does not stall on load.
+  const EDGE_OPACITY = 0.32;
+  const edgeMat = new THREE.LineBasicMaterial({ color: '#0b1a2a', transparent: true, opacity: EDGE_OPACITY, depthWrite: false });
+  const edgeQueue = [...solidMeshes];
+  let edgeTimer = 0;
+  const buildEdges = () => {
+    const t0 = performance.now();
+    while (edgeQueue.length && performance.now() - t0 < 8) {
+      const mesh = edgeQueue.pop()!;
+      const lines = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, 30), edgeMat);
+      lines.raycast = () => {};
+      mesh.add(lines);
+    }
+    needsRender = true;
+    if (edgeQueue.length) edgeTimer = window.setTimeout(buildEdges, 16);
+  };
   const wipeBox = new THREE.Box3();
   const wipeSize = new THREE.Vector3();
   const wipeLine = new THREE.Mesh(
@@ -290,6 +445,7 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
   // turn, so the later beats (and the clash shot) see the timeline's spin alone.
   let idle = 0;
   let last = 0;
+  let casting = true;
 
   function apply(time: number) {
     const dt = Math.min(0.1, (time - (last || time)) / 1000);
@@ -299,8 +455,23 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
     root.rotation.y = (state.spin + idle) * Math.PI * 2;
 
     for (const g of GROUPS) groups[g].position.y = baseY[g] + (LIFT[g] / scale) * state.lift;
+    // The grain follows each group; render() would update these matrices too, but too late for the uniforms.
+    root.updateMatrixWorld(true);
+    for (const g of GROUPS) grainSpace[g].value.copy(groups[g].matrixWorld).invert();
     ground.material.opacity = 1 - Math.max(state.lift, state.ghost);
     ground.visible = ground.material.opacity > 0.01;
+    shadowCatcher.material.opacity = SHADOW * ground.material.opacity;
+    shadowCatcher.visible = ground.visible;
+    // See-through walls must not darken the clash pair. Toggled per mesh:
+    // switching the light's shadow off would recompile every material.
+    const cast = state.ghost < 0.02;
+    if (cast !== casting) {
+      casting = cast;
+      for (const mesh of solidMeshes) mesh.castShadow = cast;
+    }
+    edgeMat.opacity = EDGE_OPACITY * (1 - state.ghost);
+    edgeMat.visible = edgeMat.opacity > 0.01;
+    edgeMat.clippingPlanes = state.wipe >= 0 && state.wipe <= 1 ? [wipePlane] : null;
 
     for (const e of mats) {
       if (e.clash) {
@@ -505,11 +676,13 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
     renderer.render(scene, camera);
   };
   raf = requestAnimationFrame(loop);
+  edgeTimer = window.setTimeout(buildEdges, 100);
   opts.onReady?.();
   if (import.meta.env.DEV) Object.assign(window, { __hero: { state, camera, tl, root, SHOTS, ORBITS, renderer, scene } });
 
   return () => {
     cancelAnimationFrame(raf);
+    clearTimeout(edgeTimer);
     trigger?.kill();
     offRefresh();
     for (const t of beatTriggers) t.kill();
@@ -520,6 +693,7 @@ export async function initHeroScene(opts: HeroSceneOptions): Promise<() => void>
     cancelAnimationFrame(refreshQueued);
     window.removeEventListener('pointermove', onPointer);
     envTex.dispose();
+    grainMap.dispose();
     renderer.dispose();
   };
 }
